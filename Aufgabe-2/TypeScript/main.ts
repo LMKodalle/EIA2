@@ -35,110 +35,177 @@ let herzKönig: Spielkarte = {
     zahl: "König"
 };
 let karo7: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Karo",
     zahl: "Sieben"
 };
 let karo8: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Karo",
     zahl: "Acht"
 };
 let karo9: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Karo",
     zahl: "Neun"
 };
 let karo10: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Karo",
     zahl: "Zehn"
 };
 let karoAss: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Karo",
     zahl: "Ass"
 };
 let karoBube: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Karo",
     zahl: "Bube"
 };
 let karoDame: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Karo",
     zahl: "Dame"
 };
 let karoKönig: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Karo",
     zahl: "König"
 };
 let pik7: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Pik",
     zahl: "Sieben"
 };
 let pik8: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Pik",
     zahl: "Acht"
 };
 let pik9: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Pik",
     zahl: "Neun"
 };
 let pik10: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Pik",
     zahl: "Zehn"
 };
 let pikAss: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Pik",
     zahl: "Ass"
 };
 let pikBube: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Pik",
     zahl: "Bube"
 };
 let pikDame: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Pik",
     zahl: "Dame"
 };
 let pikKönig: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Pik",
     zahl: "König"
 };
 let kreuz7: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Kreuz",
     zahl: "Sieben"
 };
 let kreuz8: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Kreuz",
     zahl: "Acht"
 };
 let kreuz9: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Kreuz",
     zahl: "Neun"
 };
 let kreuz10: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Kreuz",
     zahl: "Zehn"
 };
 let kreuzAss: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Kreuz",
     zahl: "Ass"
 };
 let kreuzBube: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Kreuz",
     zahl: "Bube"
 };
 let kreuzDame: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Kreuz",
     zahl: "Dame"
 };
 let kreuzKönig: Spielkarte = {
-    farbe: "Herz",
+    farbe: "Kreuz",
     zahl: "König"
 };
 
+document.addEventListener('DOMContentLoaded', write_htmlbody);
+document.addEventListener('DOMContentLoaded', neues_spiel);
+
+function write_htmlbody () {
+    let body : string = `<div class="top_interface">
+    <div class="rundenzahl">
+        <p>Runde:</p>
+    </div>
+    <div class="countdown">
+        <p>30s/20s/10s</p>
+    </div>
+    <div class="siege">
+        <p>Siege:</p>
+    </div>
+    <div class="minuspunkte:">
+        <p>Maluspunkte:</p>
+    </div>`;
+    document.getElementById("createHtml").insertAdjacentHTML('beforeend', body);
+}
+
 let ziehstapel: Spielkarte[] = [herz7, herz8, herz9, herz10, herzAss, herzBube, herzDame, herzKönig, karo7, karo8, karo9, karo10, karoAss, karoBube, karoDame, karoKönig, pik7, pik8, pik9, pik10, pikAss, pikBube, pikDame, pikKönig, kreuz7, kreuz8, kreuz9, kreuz10, kreuzAss, kreuzBube, kreuzDame, kreuzKönig];
-let zandkarten: Spielkarte[] = [];
+let handkarten: Spielkarte[] = [];
+ 
 
 function neues_spiel(): void {
-    let anfangskarten: string = prompt("Wie viele Handkarten?");
+    let anfangskarten: string;
+    handkarten.length = 0
+    document.getElementById("handkarten").innerHTML = " ";
+    
+    anfangskarten = prompt("Wie viele Handkarten?");
     if (anfangskarten != null) {
         document.getElementById("handkartenAnzahl").innerHTML = "Anzahl Handkarten:" + " " + anfangskarten;
+        random_cards(parseInt(anfangskarten,10));
+        console.log(anfangskarten); ;
     }
 }
 
-console.log("Hallo");
+function random_cards(_anfangskarten: number){
+    let i: number = 0; 
+    let x: number;   
+    while (i < _anfangskarten){
+        x = Math.floor((Math.random() * ziehstapel.length) + 0);  
+        console.log("Anzahl Ziehstapel:" + " " + ziehstapel.length)
+        console.log("Zufallsnummer:" + " " + x);
+        console.log(ziehstapel[x]);
+        
+        handkarten.push(ziehstapel[x]);
+        console.log(handkarten[i])
+        ziehstapel.splice(x,1);
+        
+        let kartenFarbe: string = handkarten[i].farbe;
+        let kartenNummer: string = handkarten[i].zahl;
+        console.log(kartenFarbe, kartenNummer);
+        create_cards(kartenFarbe, kartenNummer);
+        i++
+    }
+        create_ziehstapel(ziehstapel.length)
+    }
+
+function create_cards(_kartenFarbe: string, _kartenNummer: string){
+    switch(_kartenFarbe){
+        case "Herz":
+        case "Karo":
+        let cardsred : string = `<div class="flex"><ul><li class="farberot">${_kartenFarbe}</li><li class="zahl">${_kartenNummer}</li></ul></div>`;
+        document.getElementById("handkarten").insertAdjacentHTML('beforeend', cardsred);
+        break;
+        default:
+        let cardsblack : string = `<div class="flex"><ul><li class="farbeschwarz">${_kartenFarbe}</li><li class="zahl">${_kartenNummer}</li></ul></div>`;
+        document.getElementById("handkarten").insertAdjacentHTML('beforeend', cardsblack);
+        break;
+    }
+}
+
+function create_ziehstapel(_ziehstapelanzahl: number){
+    let ziehstapel : string = `<div class="ziehstapel"><p id="innerZiehstapel"></p></div>`;
+    document.getElementById("handkarten").insertAdjacentHTML('beforeend', ziehstapel);
+    document.getElementById("innerZiehstapel").innerHTML = "Ziehstapel:" + " " + _ziehstapelanzahl;
+}

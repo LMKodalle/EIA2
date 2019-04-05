@@ -8,30 +8,14 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="./TypeScript/main.js"></script>
 </head>
-<body>
-<header class="top_interface">
-    <div class="rundenzahl">
-        <p>Runde:</p>
-    </div>
-    <div class="countdown">
-        <p>30s/20s/10s</p>
-    </div>
-    <div class="siege">
-        <p>Siege:</p>
-    </div>
-    <div class="minuspunkte:">
-        <p>Maluspunkte:</p>
-    </div>
-</header>
-<div class="ziehen"></div> 
-<div class="ablage"></div> 
-<div class="bottom_interface">
-    <div class="neues_spiel">
-        <button onclick="neues_spiel();">Neues Spiel</button>
-    </div>
-    <div class="anzahl_handkarten">
-        <p id="handkartenAnzahl">Anzahl Handkarten:</p>
-    </div>
-</div>
+<body id="createHtml">
+    <nav>
+        <ul>
+            <li><button onclick="neues_spiel();">Neues Spiel</button></li>
+        </ul>
+    </nav>
+    <div id="handkarten"></div>
+    <p id="handkartenAnzahl">Anzahl Handkarten:</p>
+    <div id="ziehstapel"></div>
 </body>
 </html>
