@@ -34,7 +34,8 @@ p {
 .ziehstapel{
     position: absolute;
     top: 45%;
-    right: 3em;
+    right: 5%;
     background-color: white;
-    padding: 1.5em;
+    padding: 3%;
+    width: 5%
 }
