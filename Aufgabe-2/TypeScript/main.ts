@@ -162,7 +162,7 @@ function neues_spiel(): void {
     
     do{
         anfangskarten = parseInt(prompt("Wie viele Handkarten? Von einer bis 32"), 10);
-    } while(isNaN(anfangskarten) || anfangskarten > 32 || anfangskarten < 1)
+    } while(isNaN(anfangskarten) || anfangskarten > 32 || anfangskarten < 1)                                                                                                                                                                                                                                                                                                                                                                                                                                                              < 1)
     
         document.getElementById("handkartenAnzahl").innerHTML = "Anzahl Handkarten:" + " " + anfangskarten;
         random_cards(anfangskarten);
