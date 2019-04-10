@@ -135,16 +135,10 @@ document.addEventListener('DOMContentLoaded', write_htmlbody);
 
 function write_htmlbody () {
     let body : string = `<div class="top_interface">
-    <div class="rundenzahl">
-        <p>Runde:</p>
+    <div>
+        <p class="rundenzahl">Rundenzahl:</p>
     </div>
-        <p>30s/20s/10s</p>
-    <div class="siege">
-        <p>Siege:</p>
-    </div>
-    <div class="minuspunkte:">
-        <p>Maluspunkte:</p>
-    </div>`;
+        <p class="countdown">30s/20s/10s</p>`;
     document.getElementById("createHtml").insertAdjacentHTML('beforeend', body);
     neues_spiel();
 }
@@ -210,3 +204,20 @@ function create_ziehstapel(_ziehstapelanzahl: number){
     document.getElementById("innerZiehstapel").innerHTML = "Ziehstapel:" + " " + _ziehstapelanzahl;
 }
 
+
+
+function cards_ziehen(): void {
+    let i: number = 0; 
+    let x: number;   
+    while (i < 1){
+        x = Math.floor((Math.random() * ziehstapel.length) + 0); 
+        handkarten.push(ziehstapel[x]);
+        ziehstapel.splice(x,1);
+        let kartenFarbe: string = handkarten[handkarten.length-1].farbe;
+        let kartenNummer: string = handkarten[handkarten.length-1].zahl;
+        create_cards(kartenFarbe, kartenNummer);
+        document.getElementById("innerZiehstapel").innerHTML = "Ziehstapel:" + " " + ziehstapel.length;
+        i++
+    }
+
+    }

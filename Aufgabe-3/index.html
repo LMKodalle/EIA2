@@ -9,13 +9,18 @@
     <script src="./TypeScript/main.js"></script>
 </head>
 <body id="createHtml">
-    <nav>
-        <ul>
-            <li><button onclick="neues_spiel();">Neues Spiel</button></li>
-        </ul>
-    </nav>
+    <header>
+        <span>Mau Mau</span>
+        <button onclick="neues_spiel();">Neues Spiel</button>
+        <span class="siege">Siege:</span>
+        <span class="maluspunkte">Maluspunkte:</span>
+    </header>
+<main>
     <div id="handkarten"></div>
     <p id="handkartenAnzahl">Anzahl Handkarten:</p>
-    <div id="ziehstapel"></div>
+<div id="ziehstapel">
+    <button onclick="cards_ziehen();"></button>
+</div>
+</main>
 </body>
 </html>

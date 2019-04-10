@@ -2,15 +2,6 @@ body {
     background-color: #600600;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-nav {
-    top: 0;
-    right: 0;
-    left: 0;
-    border: 1px none;
-    text-align: center;
-    background-color: rgba(0,0,0,0.8);
-    width: 100%;
-}
 
 .flex {
     float: left;
@@ -22,16 +13,17 @@ nav {
     box-shadow:  0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     background-color: white;
 }
-
-ul li {
-    list-style: none;
-}
 .farberot {
     color: red;
 }
 p {
     clear: left;
 }
+
+li {
+    list-style:  none;
+}
+
 .ziehstapel{
     position: absolute;
     top: 45%;
@@ -40,4 +32,108 @@ p {
     padding: 3%;
     width: 5%;
     height: 100px;
+}
+header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 5px;
+    height: 3rem;
+    width: 100%;
+    background-color: black;
+    text-align: center;
+    border-bottom: solid white 3px;
+}
+span {
+    font-size: 3rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:white;
+}
+
+header button {
+    position: absolute;
+    right: 2%;
+    background-color:white;
+    color: black;
+    border: solid red 3px;
+    font-size: 2rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    cursor: pointer;
+}
+
+main{
+    margin-top: 5rem;
+}
+
+#handkarten {
+    margin-bottom: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 10%;
+    background-color: black;
+    border: solid white 3px;
+    width: 80%;
+    height: 15rem;
+    overflow: auto;
+}
+
+#handkartenAnzahl {
+    position: absolute;
+    bottom: 30%;
+    right: 10%;
+    background-color: white;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border: solid black 3px;
+    font-size: 2rem;
+    padding: 1%;
+}
+
+.rundenzahl {
+    position: absolute;
+    bottom: 30%;
+    left: 10%;
+    background-color: white;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border: solid black 3px;
+    font-size: 2rem;
+    padding: 1%;
+}
+
+.countdown {
+    position: absolute;
+    bottom: 30%;
+    left: 30%;
+    background-color: white;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border: solid black 3px;
+    font-size: 2em;
+    padding: 1%;
+}
+
+.siege {
+    position: absolute;
+    left: 2%;
+    background-color:white;
+    color: black;
+    border: solid red 3px;
+    font-size: 2rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.maluspunkte {
+    position: absolute;
+    left: 15%;
+    background-color:white;
+    color: black;
+    border: solid red 3px;
+    font-size: 2rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding-left: 1%;
+    padding-right: 1%;
 }

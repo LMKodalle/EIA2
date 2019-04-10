@@ -129,16 +129,10 @@ let kreuzKönig = {
 document.addEventListener('DOMContentLoaded', write_htmlbody);
 function write_htmlbody() {
     let body = `<div class="top_interface">
-    <div class="rundenzahl">
-        <p>Runde:</p>
+    <div>
+        <p class="rundenzahl">Rundenzahl:</p>
     </div>
-        <p>30s/20s/10s</p>
-    <div class="siege">
-        <p>Siege:</p>
-    </div>
-    <div class="minuspunkte:">
-        <p>Maluspunkte:</p>
-    </div>`;
+        <p class="countdown">30s/20s/10s</p>`;
     document.getElementById("createHtml").insertAdjacentHTML('beforeend', body);
     neues_spiel();
 }
@@ -193,5 +187,19 @@ function create_ziehstapel(_ziehstapelanzahl) {
     let ziehstapel = `<div class="ziehstapel"><p id="innerZiehstapel"></p></div>`;
     document.getElementById("handkarten").insertAdjacentHTML('beforeend', ziehstapel);
     document.getElementById("innerZiehstapel").innerHTML = "Ziehstapel:" + " " + _ziehstapelanzahl;
+}
+function cards_ziehen() {
+    let i = 0;
+    let x;
+    while (i < 1) {
+        x = Math.floor((Math.random() * ziehstapel.length) + 0);
+        handkarten.push(ziehstapel[x]);
+        ziehstapel.splice(x, 1);
+        let kartenFarbe = handkarten[handkarten.length - 1].farbe;
+        let kartenNummer = handkarten[handkarten.length - 1].zahl;
+        create_cards(kartenFarbe, kartenNummer);
+        document.getElementById("innerZiehstapel").innerHTML = "Ziehstapel:" + " " + ziehstapel.length;
+        i++;
+    }
 }
 //# sourceMappingURL=main.js.map
