@@ -127,15 +127,12 @@ let kreuzKönig = {
     zahl: "König"
 };
 document.addEventListener('DOMContentLoaded', write_htmlbody);
-document.addEventListener('DOMContentLoaded', neues_spiel);
 function write_htmlbody() {
     let body = `<div class="top_interface">
     <div class="rundenzahl">
         <p>Runde:</p>
     </div>
-    <div class="countdown">
         <p>30s/20s/10s</p>
-    </div>
     <div class="siege">
         <p>Siege:</p>
     </div>
@@ -143,6 +140,7 @@ function write_htmlbody() {
         <p>Maluspunkte:</p>
     </div>`;
     document.getElementById("createHtml").insertAdjacentHTML('beforeend', body);
+    neues_spiel();
 }
 let ziehstapel = [herz7, herz8, herz9, herz10, herzAss, herzBube, herzDame, herzKönig, karo7, karo8, karo9, karo10, karoAss, karoBube, karoDame, karoKönig, pik7, pik8, pik9, pik10, pikAss, pikBube, pikDame, pikKönig, kreuz7, kreuz8, kreuz9, kreuz10, kreuzAss, kreuzBube, kreuzDame, kreuzKönig];
 let handkarten = [];
@@ -154,10 +152,10 @@ function neues_spiel() {
     do {
         anfangskarten = parseInt(prompt("Wie viele Handkarten? Von einer bis 32"), 10);
     } while (isNaN(anfangskarten) || anfangskarten > 32 || anfangskarten < 1);
+    ;
     document.getElementById("handkartenAnzahl").innerHTML = "Anzahl Handkarten:" + " " + anfangskarten;
     random_cards(anfangskarten);
     console.log(anfangskarten);
-    ;
 }
 function random_cards(_anfangskarten) {
     let i = 0;

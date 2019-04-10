@@ -15,6 +15,7 @@ nav {
 .flex {
     float: left;
     width: 10%;
+    height: 150px;
     margin: 0.5%;
     margin-bottom: 1em;
     overflow: hidden;
@@ -37,5 +38,6 @@ p {
     right: 5%;
     background-color: white;
     padding: 3%;
-    width: 5%
+    width: 5%;
+    height: 100px;
 }

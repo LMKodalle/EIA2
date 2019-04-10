@@ -1,0 +1,43 @@
+body {
+    background-color: #600600;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+nav {
+    top: 0;
+    right: 0;
+    left: 0;
+    border: 1px none;
+    text-align: center;
+    background-color: rgba(0,0,0,0.8);
+    width: 100%;
+}
+
+.flex {
+    float: left;
+    width: 10%;
+    height: 150px;
+    margin: 0.5%;
+    margin-bottom: 1em;
+    overflow: hidden;
+    box-shadow:  0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: white;
+}
+
+ul li {
+    list-style: none;
+}
+.farberot {
+    color: red;
+}
+p {
+    clear: left;
+}
+.ziehstapel{
+    position: absolute;
+    top: 45%;
+    right: 5%;
+    background-color: white;
+    padding: 3%;
+    width: 5%;
+    height: 100px;
+}
