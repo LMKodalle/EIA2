@@ -26,13 +26,15 @@ li {
 
 .ziehstapel{
     position: absolute;
-    top: 45%;
+    bottom: 45%;
     right: 5%;
     background-color: white;
     padding: 3%;
     width: 5%;
     height: 100px;
+    cursor: pointer;
 }
+
 header {
     position: absolute;
     top: 0;
@@ -112,6 +114,7 @@ main{
     border: solid black 3px;
     font-size: 2em;
     padding: 1%;
+    cursor: pointer;
 }
 
 .siege {
@@ -136,4 +139,17 @@ main{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     padding-left: 1%;
     padding-right: 1%;
+}
+
+#sort {
+    position: absolute;
+    bottom: 30%;
+    right: 40%;
+    background-color: white;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    border: solid black 3px;
+    font-size: 2rem;
+    padding: 1%;
+    cursor: pointer;
 }
