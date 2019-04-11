@@ -166,9 +166,10 @@ function write_htmlbody() {
     </div>
         <p class="countdown">30s/20s/10s</p>`;
     document.getElementById("createHtml").insertAdjacentHTML("beforeend", body);
-    neues_spiel();
     document.getElementById("ziehstapel").addEventListener("click", cards_ziehen);
     document.getElementById("sort").addEventListener("click", cards_sort);
+    document.getElementById("handkarten").addEventListener("click", cards_legen);
+    neues_spiel();
 }
 let ziehstapel = [herz7, herz8, herz9, herz10, herzAss, herzBube, herzDame, herzKönig, karo7, karo8, karo9, karo10, karoAss, karoBube, karoDame, karoKönig, pik7, pik8, pik9, pik10, pikAss, pikBube, pikDame, pikKönig, kreuz7, kreuz8, kreuz9, kreuz10, kreuzAss, kreuzBube, kreuzDame, kreuzKönig];
 let handkarten = [];
@@ -201,20 +202,20 @@ function random_cards(_anfangskarten) {
         let kartenNummer = handkarten[i].zahl;
         let kartenID = handkarten[i].order;
         console.log(kartenFarbe, kartenNummer);
-        create_cards(kartenFarbe, kartenNummer);
+        create_cards(kartenFarbe, kartenNummer, kartenID);
         i++;
     }
     create_ziehstapel(ziehstapel.length);
 }
-function create_cards(_kartenFarbe, _kartenNummer) {
+function create_cards(_kartenFarbe, _kartenNummer, _kartenID) {
     switch (_kartenFarbe) {
         case "Herz":
         case "Karo":
-            let cardsred = `<div class="flex"><ul><li class="farberot">${_kartenFarbe}</li><li class="zahl">${_kartenNummer}</li></ul></div>`;
+            let cardsred = `<div id="${_kartenID}" class="flex"><ul><li class="farberot">${_kartenFarbe}</li><li class="zahl">${_kartenNummer}</li></ul></div>`;
             document.getElementById("handkarten").insertAdjacentHTML("beforeend", cardsred);
             break;
         default:
-            let cardsblack = `<div class="flex"><ul><li class="farbeschwarz">${_kartenFarbe}</li><li class="zahl">${_kartenNummer}</li></ul></div>`;
+            let cardsblack = `<div id="${_kartenID}" class="flex"><ul><li class="farbeschwarz">${_kartenFarbe}</li><li class="zahl">${_kartenNummer}</li></ul></div>`;
             document.getElementById("handkarten").insertAdjacentHTML("beforeend", cardsblack);
             break;
     }
@@ -231,7 +232,8 @@ function cards_ziehen() {
     ziehstapel.splice(x, 1);
     let kartenFarbe = handkarten[handkarten.length - 1].farbe;
     let kartenNummer = handkarten[handkarten.length - 1].zahl;
-    create_cards(kartenFarbe, kartenNummer);
+    let kartenID = handkarten[handkarten.length - 1].order;
+    create_cards(kartenFarbe, kartenNummer, kartenID);
     document.getElementById("innerZiehstapel").innerHTML = "Ziehstapel:" + " " + ziehstapel.length;
     document.getElementById("handkartenAnzahl").innerHTML = "Anzahl Handkarten:" + " " + handkarten.length;
 }
@@ -241,11 +243,44 @@ function cards_sort() {
     handkarten.sort(array_sort);
     console.log(handkarten);
     while (i < handkarten.length) {
-        create_cards(handkarten[i].farbe, handkarten[i].zahl);
+        create_cards(handkarten[i].farbe, handkarten[i].zahl, handkarten[i].order);
         i++;
     }
 }
 function array_sort(_a, _b) {
     return _a.order - _b.order;
+}
+function cards_legen() {
+    let i = 0;
+    let domCard = event.target;
+    while (i < handkarten.length) {
+        if (handkarten[i].order == parseInt(domCard.getAttribute("id"), 10)) {
+            ablagestapel.push(handkarten[i]);
+            handkarten.splice(i, 1);
+            console.log(handkarten.length);
+            console.log(ablagestapel);
+            document.getElementById("handkarten").innerHTML = " ";
+        }
+        i++;
+    }
+    for (i = 0; i < handkarten.length; i++) {
+        create_cards(handkarten[i].farbe, handkarten[i].zahl, handkarten[i].order);
+    }
+    ;
+    create_ablagestapel(ablagestapel[ablagestapel.length - 1].farbe, ablagestapel[ablagestapel.length - 1].zahl, ablagestapel[ablagestapel.length - 1].order);
+}
+function create_ablagestapel(_kartenFarbe, _kartenNummer, _kartenID) {
+    document.getElementById("ablagestapel").innerHTML = " ";
+    switch (_kartenFarbe) {
+        case "Herz":
+        case "Karo":
+            let cardsred = `<div id="${_kartenID}" class="flex"><ul><li class="farberot">${_kartenFarbe}</li><li class="zahl">${_kartenNummer}</li></ul></div>`;
+            document.getElementById("ablagestapel").insertAdjacentHTML("beforeend", cardsred);
+            break;
+        default:
+            let cardsblack = `<div id="${_kartenID}" class="flex"><ul><li class="farbeschwarz">${_kartenFarbe}</li><li class="zahl">${_kartenNummer}</li></ul></div>`;
+            document.getElementById("ablagestapel").insertAdjacentHTML("beforeend", cardsblack);
+            break;
+    }
 }
 //# sourceMappingURL=main.js.map

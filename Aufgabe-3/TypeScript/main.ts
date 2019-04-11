@@ -173,9 +173,10 @@ function write_htmlbody(): void {
     </div>
         <p class="countdown">30s/20s/10s</p>`;
     document.getElementById("createHtml").insertAdjacentHTML("beforeend", body);
-    neues_spiel();
     document.getElementById("ziehstapel").addEventListener("click", cards_ziehen);
     document.getElementById("sort").addEventListener("click", cards_sort);
+    document.getElementById("handkarten").addEventListener("click", cards_legen);
+    neues_spiel();
 }
     
 
@@ -217,21 +218,21 @@ function random_cards(_anfangskarten: number): void {
         let kartenNummer: string = handkarten[i].zahl;
         let kartenID: number = handkarten[i].order;
         console.log(kartenFarbe, kartenNummer);
-        create_cards(kartenFarbe, kartenNummer);
+        create_cards(kartenFarbe, kartenNummer, kartenID);
         i++;
     }
     create_ziehstapel(ziehstapel.length);
 }
 
-function create_cards(_kartenFarbe: string, _kartenNummer: string): void {
+function create_cards(_kartenFarbe: string, _kartenNummer: string, _kartenID: number): void {
     switch (_kartenFarbe) {
         case "Herz":
         case "Karo":
-            let cardsred: string = `<div class="flex"><ul><li class="farberot">${_kartenFarbe}</li><li class="zahl">${_kartenNummer}</li></ul></div>`;
+            let cardsred: string = `<div id="${_kartenID}" class="flex"><ul><li class="farberot">${_kartenFarbe}</li><li class="zahl">${_kartenNummer}</li></ul></div>`;
             document.getElementById("handkarten").insertAdjacentHTML("beforeend", cardsred);
             break;
         default:
-            let cardsblack: string = `<div class="flex"><ul><li class="farbeschwarz">${_kartenFarbe}</li><li class="zahl">${_kartenNummer}</li></ul></div>`;
+            let cardsblack: string = `<div id="${_kartenID}" class="flex"><ul><li class="farbeschwarz">${_kartenFarbe}</li><li class="zahl">${_kartenNummer}</li></ul></div>`;
             document.getElementById("handkarten").insertAdjacentHTML("beforeend", cardsblack);
             break;
     }
@@ -252,7 +253,8 @@ function cards_ziehen(): void {
     ziehstapel.splice(x, 1);
     let kartenFarbe: string = handkarten[handkarten.length - 1].farbe;
     let kartenNummer: string = handkarten[handkarten.length - 1].zahl;
-    create_cards(kartenFarbe, kartenNummer);
+    let kartenID: number = handkarten[handkarten.length - 1].order;
+    create_cards(kartenFarbe, kartenNummer, kartenID);
     document.getElementById("innerZiehstapel").innerHTML = "Ziehstapel:" + " " + ziehstapel.length;
     document.getElementById("handkartenAnzahl").innerHTML = "Anzahl Handkarten:" + " " + handkarten.length;
     }
@@ -263,10 +265,43 @@ function cards_sort(): void {
     handkarten.sort(array_sort);
     console.log(handkarten);
     while (i < handkarten.length) {
-    create_cards(handkarten[i].farbe, handkarten[i].zahl);
+    create_cards(handkarten[i].farbe, handkarten[i].zahl, handkarten[i].order);
     i++;
 }}
 
 function array_sort(_a: Spielkarte, _b: Spielkarte): number { 
     return _a.order - _b.order;
+}
+
+function cards_legen(): void {
+    let i: number= 0;
+    let domCard: HTMLElement = <HTMLElement>event.target;
+    while(i < handkarten.length) {
+        if(handkarten[i].order == parseInt(domCard.getAttribute("id"), 10)) {
+            ablagestapel.push(handkarten[i]);
+            handkarten.splice(i, 1);
+            console.log(handkarten.length);
+            console.log(ablagestapel);
+            document.getElementById("handkarten").innerHTML = " ";            
+        } i++;
+    }
+    for(i = 0; i < handkarten.length; i++) {
+    create_cards(handkarten[i].farbe, handkarten[i].zahl, handkarten[i].order);
+    };
+    create_ablagestapel(ablagestapel[ablagestapel.length - 1].farbe, ablagestapel[ablagestapel.length - 1].zahl, ablagestapel[ablagestapel.length - 1].order);
+}
+
+function create_ablagestapel(_kartenFarbe: string, _kartenNummer: string, _kartenID: number): void {
+    document.getElementById("ablagestapel").innerHTML= " ";
+    switch (_kartenFarbe) {
+        case "Herz":
+        case "Karo":
+            let cardsred: string = `<div id="${_kartenID}" class="flex"><ul><li class="farberot">${_kartenFarbe}</li><li class="zahl">${_kartenNummer}</li></ul></div>`;
+            document.getElementById("ablagestapel").insertAdjacentHTML("beforeend", cardsred);
+            break;
+        default:
+            let cardsblack: string = `<div id="${_kartenID}" class="flex"><ul><li class="farbeschwarz">${_kartenFarbe}</li><li class="zahl">${_kartenNummer}</li></ul></div>`;
+            document.getElementById("ablagestapel").insertAdjacentHTML("beforeend", cardsblack);
+            break;
+    }
 }
