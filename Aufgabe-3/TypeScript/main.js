@@ -169,6 +169,7 @@ function write_htmlbody() {
     document.getElementById("ziehstapel").addEventListener("click", cards_ziehen);
     document.getElementById("sort").addEventListener("click", cards_sort);
     document.getElementById("handkarten").addEventListener("click", cards_legen);
+    window.addEventListener("keydown", press_spacebar);
     neues_spiel();
 }
 let ziehstapel = [herz7, herz8, herz9, herz10, herzAss, herzBube, herzDame, herzKönig, karo7, karo8, karo9, karo10, karoAss, karoBube, karoDame, karoKönig, pik7, pik8, pik9, pik10, pikAss, pikBube, pikDame, pikKönig, kreuz7, kreuz8, kreuz9, kreuz10, kreuzAss, kreuzBube, kreuzDame, kreuzKönig];
@@ -237,6 +238,10 @@ function cards_ziehen() {
     document.getElementById("innerZiehstapel").innerHTML = "Ziehstapel:" + " " + ziehstapel.length;
     document.getElementById("handkartenAnzahl").innerHTML = "Anzahl Handkarten:" + " " + handkarten.length;
 }
+function press_spacebar(event) {
+    if (event.keyCode == 32)
+        cards_ziehen();
+}
 function cards_sort() {
     let i = 0;
     document.getElementById("handkarten").innerHTML = " ";
@@ -251,6 +256,7 @@ function array_sort(_a, _b) {
     return _a.order - _b.order;
 }
 function cards_legen() {
+    document.getElementById("handkarten").innerHTML = " ";
     let i = 0;
     let domCard = event.target;
     while (i < handkarten.length) {
@@ -259,7 +265,6 @@ function cards_legen() {
             handkarten.splice(i, 1);
             console.log(handkarten.length);
             console.log(ablagestapel);
-            document.getElementById("handkarten").innerHTML = " ";
         }
         i++;
     }

@@ -176,6 +176,7 @@ function write_htmlbody(): void {
     document.getElementById("ziehstapel").addEventListener("click", cards_ziehen);
     document.getElementById("sort").addEventListener("click", cards_sort);
     document.getElementById("handkarten").addEventListener("click", cards_legen);
+    window.addEventListener("keydown", press_spacebar)
     neues_spiel();
 }
     
@@ -259,6 +260,10 @@ function cards_ziehen(): void {
     document.getElementById("handkartenAnzahl").innerHTML = "Anzahl Handkarten:" + " " + handkarten.length;
     }
 
+function press_spacebar(event: KeyboardEvent): void {
+    if (event.keyCode == 32) cards_ziehen();
+}
+
 function cards_sort(): void {
     let i: number = 0;
     document.getElementById("handkarten").innerHTML = " ";
@@ -273,7 +278,8 @@ function array_sort(_a: Spielkarte, _b: Spielkarte): number {
     return _a.order - _b.order;
 }
 
-function cards_legen(): void {
+function cards_legen(): void { 
+    document.getElementById("handkarten").innerHTML = " "; 
     let i: number= 0;
     let domCard: HTMLElement = <HTMLElement>event.target;
     while(i < handkarten.length) {
@@ -282,7 +288,6 @@ function cards_legen(): void {
             handkarten.splice(i, 1);
             console.log(handkarten.length);
             console.log(ablagestapel);
-            document.getElementById("handkarten").innerHTML = " ";            
         } i++;
     }
     for(i = 0; i < handkarten.length; i++) {
