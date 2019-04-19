@@ -18,9 +18,9 @@ function click(_event) {
             let price = Number(check[i].value);
             x += price;
             document.getElementById("price").innerHTML = x.toFixed(2).toString() + " " + "€";
-            let bezeichung = document.createElement("li");
-            bezeichung.innerHTML = `${check[i].id}`;
-            document.getElementById("toppings").appendChild(bezeichung);
+            let newElement = document.createElement("li");
+            newElement.innerHTML = `${check[i].id}`;
+            document.getElementById("toppings").appendChild(newElement);
         }
         if (check[i].type == "number" && Number(check[i].value) > 0) {
             let sorten = document.createElement("li");
@@ -39,7 +39,7 @@ function missing() {
         }
     }
     if (empty.length == 0) {
-        alert("danke fur ihre Bestellung");
+        alert("Vielen Dank für Deine Bestellung");
     }
     else {
         alert(`Du musst unbedingt noch ${empty} angeben`);
