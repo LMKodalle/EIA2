@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="./TypeScript/main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=10">
+    <link href="https://fonts.googleapis.com/css?family=Ewert|Yeon+Sung" rel="stylesheet"> 
 </head>
 <body>
     <header>
@@ -16,66 +17,56 @@
         <fieldset id="text">
             <legend>Stell dein Eis zusammen</legend>
             <p>Wie viele Kugeln Eis möchtest du?</p>
-            <input type="radio" name="scoops" value="1" id="scoop1" />
+            <input type="radio" name="scoops" value="1" id="1 Kugel"/>
             <label for="scoop1">1 Kugel</label>
-            <input type="radio" name="scoops" value="2" id="scoop2"/>
+            <input type="radio" name="scoops" value="2" id="2 Kugeln"/>
             <label for="scoop2">2 Kugeln</label>
-            <input type="radio" name="scoops" value= "2.5" id="scoop3"/>
+            <input type="radio" name="scoops" value= "2.5" id="3 Kugeln"/>
             <label for="scoop3">3 Kugeln</label>
-            <input type="radio" name="scoops" value="3" id="scoop4"/>
+            <input type="radio" name="scoops" value="3" id="4 Kugeln"/>
             <label for="scoop4">4 Kugeln</label>
-            <input type="radio" name="scoops" value="3.2" id="scoop5"/>
+            <input type="radio" name="scoops" value="3.2" id="5 Kugeln"/>
             <label for="scoop5">5 Kugeln</label>
         </hr>
             <p>In welche Sorte(n) möchtest du dein Eis </p>
-            <input type="number" name="flavour1" step="1" min="0" max="5" value="0"/>
-            <label for="flavour1">Zitrone</label>
-            <input type="number" name="flavour2" step="1" min="0" max="5" value="0"/>
-            <label for="flavour2">Schokolade</label>
-            <input type="number" name="flavour3" step="1" min="0" max="5" value="0"/>
-            <label for="flavour3">Vanille</label>
-            <input type="number" name="flavour4" step="1" min="0" max="5" value="0"/>
-            <label for="flavour4">Erdbeere</label>
-            <input type="number" name="flavour5" step="1" min="0" max="5" value="0"/>
-            <label for="flavour5">Mango</label>
-            <input type="number" name="flavour6" step="1" min="0" max="5" value="0"/>
-            <label for="flavour6">Banane</label>
-            <input type="number" name="flavour7" step="1" min="0" max="5" value="0"/>
-            <label for="flavour7">Stracciatella</label>
-            <input type="number" name="flavour8" step="1" min="0" max="5" value="0"/>
-            <label for="flavour8">Blaubeere</label>
-            <input type="number" name="flavour9" step="1" min="0" max="5" value="0"/>
-            <label for="flavour9">Pfirsich</label>
-            <input type="number" name="flavour10" step="1" min="0" max="5" value="0"/>
-            <label for="flavour10">Limette</label>
+            <input type="number" name="Zitrone" step="1" min="0" max="5" value="0"/>
+            <label for="Zitrone">Zitrone</label>
+            <input type="number" name="Schokolade" step="1" min="0" max="5" value="0"/>
+            <label for="Schokolade">Schokolade</label>
+            <input type="number" name="Vanille" step="1" min="0" max="5" value="0"/>
+            <label for="Vanille">Vanille</label>
+            <input type="number" name="Erdbeere" step="1" min="0" max="5" value="0"/>
+            <label for="Erdbeere">Erdbeere</label>
+            <input type="number" name="Mango" step="1" min="0" max="5" value="0"/>
+            <label for="Mango">Mango</label>
+            <input type="number" name="Banane" step="1" min="0" max="5" value="0"/>
+            <label for="Banane">Banane</label>
+            <input type="number" name="Stracciatella" step="1" min="0" max="5" value="0"/>
+            <label for="Stracciatella">Stracciatella</label>
+            <input type="number" name="Blaubeere" step="1" min="0" max="5" value="0"/>
+            <label for="Blaubeere">Blaubeere</label>
+            <input type="number" name="Pfirsich" step="1" min="0" max="5" value="0"/>
+            <label for="Pfirsich">Pfirsich</label>
+            <input type="number" name="Limette" step="1" min="0" max="5" value="0"/>
+            <label for="Limette">Limette</label>
          </hr>
             <p>Möchtest du Toppings auf dein Eis?</p>
-            <input type="checkbox" name="sahne" value="check1" id="sahne"/>
-            <label for="sahne">Sahne</label>
-            Streusel
-            <select name="streusel" id="streusel">
-                    <optgroup label="Streusel">
-                        <option value="option1">Schokolade</option>
-                        <option value="option2">Bunt</option>
-                    </optgroup>
-                </select>
-            Soßen
-            <select name="sauce" id="sauce">
-                    <optgroup label="Soßen">
-                        <option value="option3">Schokolade</option>
-                        <option value="option5">Erdbeere</option> 
-                        <option value="option4">Vanille</option>
-                    </optgroup>
-                </select>
+            <input type="checkbox" name="sahne" value="0.8" id="sahne"/>
+            <label for="sahne">Sahne (+0.8€)</label>
+            <input type="checkbox" name="streusel" value="0.5" id="streusel"/>
+            <label for="sauce">Sauce (+0.5€)</label>
+            <input type="checkbox" name="sauce" value="0.3" id="sauce"/>
+            <label for="streusel">Streusel (+0.3€)</label>
         </fieldset>
-        <fieldset>
+        <fieldset id="summary">
             <legend>Zusammenfassung</legend>
             <span id="price"></span> 
-            <span kugeln=""></span>
-            <span sorten=""></span>
-            <span toppings=""></span>
+            <span id="kugeln"></span>
+            <span id="sorten"></span>
+            <span id="toppings"></span>
+            <button id="bestellen">Bestellung abschicken</button>
         </fieldset>
-        <fieldset>
+        <fieldset class="liefern">
             <legend>Lieferinformationen</legend>
             <p>Deine Adresse</p>
                 Name
@@ -103,11 +94,10 @@
                 <input type="text" name="Telefonnummer" pattern="[0-9]" placeholder="+49"/>
                 <hr/>
             <p>Lieferoptionen</p>
-                <input type="radio" name="shipping" value="radio6" id="shipping1"/>
-                <label for="shipping1">Express</label>
-                <input type="radio" name="shipping" value="radio7" id="shipping2"/>
-                <label for="shipping2">Super-Express</label> 
-                <button>Bestellung abschicken</button>
+                <input type="radio" name="shipping" value="0" id="Express"/>
+                <label for="shipping1">Express (free)</label>
+                <input type="radio" name="shipping" value="1" id="Super-Express"/>
+                <label for="shipping2">Super-Express (+1€)</label> 
         </fieldset>
         
 </body>
