@@ -1,11 +1,5 @@
 window.addEventListener("load", rdy);
 
-interface Eis {
-    name: string,
-    preis: number
-}
-let cart: Eis[] = [];
-
 function rdy(_event: Event): void {
     document.getElementById("bestellen").addEventListener("click", missing);
     console.log("loaded");
