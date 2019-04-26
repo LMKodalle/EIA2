@@ -1,91 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Eisdealer</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="./TypeScript/data.js"></script>
+    <script src="./TypeScript/test.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="./TypeScript/main.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=10">
-    <link href="https://fonts.googleapis.com/css?family=Ewert|Yeon+Sung" rel="stylesheet"> 
 </head>
 <body>
-    <header>
-        <span>Eisdealer.de</span>
-    </header>
-        <fieldset id="text">
-            <p>In welche Sorte(n) möchtest du dein Eis </p>
-            <input type="number" name="Zitrone" step="1" min="0" max="5" value="0"/>
-            <label for="Zitrone">Zitrone</label>
-            <input type="number" name="Schokolade" step="1" min="0" max="5" value="0"/>
-            <label for="Schokolade">Schokolade</label>
-            <input type="number" name="Vanille" step="1" min="0" max="5" value="0"/>
-            <label for="Vanille">Vanille</label>
-            <input type="number" name="Erdbeere" step="1" min="0" max="5" value="0"/>
-            <label for="Erdbeere">Erdbeere</label>
-            <input type="number" name="Mango" step="1" min="0" max="5" value="0"/>
-            <label for="Mango">Mango</label>
-            <input type="number" name="Banane" step="1" min="0" max="5" value="0"/>
-            <label for="Banane">Banane</label>
-            <input type="number" name="Stracciatella" step="1" min="0" max="5" value="0"/>
-            <label for="Stracciatella">Stracciatella</label>
-            <input type="number" name="Blaubeere" step="1" min="0" max="5" value="0"/>
-            <label for="Blaubeere">Blaubeere</label>
-            <input type="number" name="Pfirsich" step="1" min="0" max="5" value="0"/>
-            <label for="Pfirsich">Pfirsich</label>
-            <input type="number" name="Limette" step="1" min="0" max="5" value="0"/>
-            <label for="Limette">Limette</label>
-         </hr>
-            <p>Möchtest du Toppings auf dein Eis?</p>
-            <input type="checkbox" name="sahne" value="0.8" id="sahne"/>
-            <label for="sahne">Sahne (+0.8€)</label>
-            <input type="checkbox" name="streusel" value="0.5" id="streusel"/>
-            <label for="sauce">Sauce (+0.5€)</label>
-            <input type="checkbox" name="sauce" value="0.3" id="sauce"/>
-            <label for="streusel">Streusel (+0.3€)</label>
-        </fieldset>
-        <fieldset id="summary">
-            <legend>Zusammenfassung</legend>
-            <span id="price"></span> 
-            <span id="kugeln"></span>
-            <span id="sorten"></span>
-            <span id="toppings"></span>
-            <button id="bestellen">Bestellung abschicken</button>
-        </fieldset>
-        <fieldset class="liefern">
-            <legend>Lieferinformationen</legend>
-            <p>Deine Adresse</p>
-                Name
-                <input type="text" name="Name" placeholder="Mustermann" required/>
-                <hr/>
-                Vorname
-                <input type="text" name="Vorname" placeholder="Max" required/>
-                <hr/>
-                Straße
-                <input type="text" name="Straße" placeholder="Musterstraße" required/>
-                <hr/>
-                Haus-Nr.
-                <input type="text" name="Haus-Nr" placeholder="33" required/>
-                <hr/>
-                PLZ
-                <input type="text" name="PLZ" pattern="[0-9]{5}" required/>
-                <hr/>
-                Ort
-                <input type="text" name="Ort" placeholder="Musterstadt" required/>
-                <hr/>
-                E-Mail
-                <input type="email" name="Mail" placeholder="max.mustermann@" required/>
-                <hr/>
-                Telefonnummer*
-                <input type="text" name="Telefonnummer" pattern="[0-9]" placeholder="+49"/>
-                <hr/>
-            <p>Lieferoptionen</p>
-                <input type="radio" name="shipping" value="0" id="Abholung"/>
-                <label for="shipping1">Abholung</label>
-                <input type="radio" name="shipping" value="1" id="Express"/>
-                <label for="shipping2">Express (+1€)</label> 
-        </fieldset>
-        
+	<fieldset class="liefern">
+		<legend>Lieferinformationen</legend>
+		<p>Deine Adresse</p>
+			Name
+			<input type="text" name="Name" placeholder="Mustermann" required/>
+			<hr/>
+			Vorname
+			<input type="text" name="Vorname" placeholder="Max" required/>
+			<hr/>
+			Straße
+			<input type="text" name="Straße" placeholder="Musterstraße" required/>
+			<hr/>
+			Haus-Nr.
+			<input type="text" name="Haus-Nr" placeholder="33" required/>
+			<hr/>
+			PLZ
+			<input type="text" name="PLZ" pattern="[0-9]{5}" required/>
+			<hr/>
+			Ort
+			<input type="text" name="Ort" placeholder="Musterstadt" required/>
+			<hr/>
+			E-Mail
+			<input type="email" name="Mail" placeholder="max.mustermann@" required/>
+			<hr/>
+			Telefonnummer*
+			<input type="text" name="Telefonnummer" pattern="[0-9]" placeholder="+49"/>
+			<hr/>
+		<p>Lieferoptionen</p>
+			<input type="radio" name="shipping" value="0" id="Abholung"/>
+			<label for="shipping1">Abholung</label>
+			<input type="radio" name="shipping" value="1" id="Express"/>
+			<label for="shipping2">Express (+1€)</label> 
+	</fieldset>	
+	<fieldset id="summary">
+		<legend>Zusammenfassung</legend>
+		<span id="price"></span> 
+		<span id="kugeln"></span>
+		<span id="sorten"></span>
+		<span id="toppings"></span>
+		<button id="bestellen">Bestellung abschicken</button>
+	</fieldset>
 </body>
 </html>
