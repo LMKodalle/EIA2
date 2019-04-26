@@ -32,6 +32,7 @@ namespace aufgabe5 {
                 input.setAttribute("type", _eis.type);
                 input.setAttribute("name", "radiobutton");
                 input.setAttribute("price", "0");
+                input.setAttribute("bezeichnung", _eis.name)
                 break;
             case "number":
                 input.setAttribute("type", _eis.type);
@@ -45,6 +46,7 @@ namespace aufgabe5 {
             case "checkbox":
                 input.setAttribute("type", _eis.type);
                 input.setAttribute("price", "0.5");
+                input.setAttribute("name", _eis.name)
                 break;
         }
         fieldset.appendChild(input);
@@ -68,30 +70,69 @@ namespace aufgabe5 {
         let newElement: HTMLElement = document.createElement("li");
         document.getElementById("sorten").innerHTML = " ";
         document.getElementById("toppings").innerHTML = " ";
+        document.getElementById("price").innerHTML = " ";
+        document.getElementById("form").innerHTML = " ";
+        document.getElementById("shipping").innerHTML = " ";
         for (let i: number = 0; i < check.length; i++) {
-            if (check[i].checked == true) {
+            if (check[i].checked == true && check[i].getAttribute("price") == "0.5") {
                 let price: number = Number(check[i].getAttribute("price"));
                 start += price;
                 document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
-                newElement.innerHTML = `${check[i].id}`;
+                newElement.innerHTML = `${check[i].name}`;
                 document.getElementById("toppings").appendChild(newElement);
             }
-            if (check[i].type == "number" && Number(check[i].getAttribute("price")) > 0) {
+            if (check[i].checked == true && check[i].getAttribute("name") == "radiobutton") {
+                document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
+                let form: HTMLElement = document.createElement("li");
+                form.innerHTML = `${check[i].getAttribute("bezeichnung")}`;
+                document.getElementById("form").appendChild(form);
+            }
+            if (check[i].type == "number" && Number(check[i].value) > 0) {
+                let price: number = Number(check[i].value);
+                start += price;
+                document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
                 let sorten: HTMLElement = document.createElement("li");
                 sorten.innerHTML = `${check[i].value} x ${check[i].name}`;
                 document.getElementById("sorten").appendChild(sorten);
             }
+            if (check[i].checked == true && check[i].name == "shipping") {
+                let price: number = Number(check[i].getAttribute("price"));
+                start += price;
+                document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
+                let shipping: HTMLElement = document.createElement("li");
+                shipping.innerHTML = `${check[i].getAttribute("bezeichnung")}`;
+                document.getElementById("shipping").appendChild(shipping);
         }
     }
+}
 
     function missing(): void {
         let empty: string[] = [];
         let missing: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
-        for (let i: number = 0; i < missing.length; i++) {
-            if (missing[i].value == "") {
-                let feldName: string = missing[i].name;
-                empty.push(feldName);
+        let sorten: number = 0;
+        let button: number = 0;
+        for (let i: number = 0; i < missing.length; i++) {            
+            if (missing[i].type == "text")
+                if (missing[i].value == "") {
+                    let feldName: string = missing[i].name;
+                    empty.push(feldName);
             }
+            if (missing[i].type == "number") {
+                if (Number(missing[i].value) > 0) {
+                    sorten = 1;
+                }
+            }
+            if (missing[i].type == "radio") {
+                if (missing[i].checked == true) {
+                    button = 1;
+                }
+            }
+        } 
+        if (button == 0) {
+            alert("Darreichungsform wählen")
+        }
+        if (sorten == 0) {
+            alert("Sorte auswählen")
         }
         if (empty.length == 0) {
             alert("Vielen Dank für Deine Bestellung");

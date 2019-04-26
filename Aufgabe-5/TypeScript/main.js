@@ -65,15 +65,16 @@ var aufgabe5;
         document.getElementById("toppings").innerHTML = " ";
         document.getElementById("price").innerHTML = " ";
         document.getElementById("form").innerHTML = " ";
+        document.getElementById("shipping").innerHTML = " ";
         for (let i = 0; i < check.length; i++) {
-            if (check[i].checked == true && check[i].getAttribute("price") != "0") {
+            if (check[i].checked == true && check[i].getAttribute("price") == "0.5") {
                 let price = Number(check[i].getAttribute("price"));
                 start += price;
                 document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
                 newElement.innerHTML = `${check[i].name}`;
                 document.getElementById("toppings").appendChild(newElement);
             }
-            if (check[i].checked == true && check[i].getAttribute("price") == "0") {
+            if (check[i].checked == true && check[i].getAttribute("name") == "radiobutton") {
                 document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
                 let form = document.createElement("li");
                 form.innerHTML = `${check[i].getAttribute("bezeichnung")}`;
@@ -86,6 +87,14 @@ var aufgabe5;
                 let sorten = document.createElement("li");
                 sorten.innerHTML = `${check[i].value} x ${check[i].name}`;
                 document.getElementById("sorten").appendChild(sorten);
+            }
+            if (check[i].checked == true && check[i].name == "shipping") {
+                let price = Number(check[i].getAttribute("price"));
+                start += price;
+                document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
+                let shipping = document.createElement("li");
+                shipping.innerHTML = `${check[i].getAttribute("bezeichnung")}`;
+                document.getElementById("shipping").appendChild(shipping);
             }
         }
     }
@@ -125,4 +134,4 @@ var aufgabe5;
         }
     }
 })(aufgabe5 || (aufgabe5 = {}));
-//# sourceMappingURL=test.js.map
+//# sourceMappingURL=main.js.map
