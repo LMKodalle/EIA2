@@ -23,5 +23,6 @@ var L05_Server;
         _response.end(); //Dem Server wird signalisiert, dass die Antwort vollständig ist
     } //Ende Funktion
 })(L05_Server || (L05_Server = {})); //Ende namespace
+//Wenn man hinter dem / Text hinzufügt, wird dieser auf der Website dargestellt
 //Ctrl + C um den Server wieder zu stoppen
 //# sourceMappingURL=Server.js.map

@@ -26,5 +26,5 @@ namespace L05_Server { //Beginn des L05_Server namespace
 		_response.end(); //Dem Server wird signalisiert, dass die Antwort vollständig ist
 	} //Ende Funktion
 } //Ende namespace
-
+//Wenn man hinter dem / Text hinzufügt, wird dieser auf der Website dargestellt
 //Ctrl + C um den Server wieder zu stoppen

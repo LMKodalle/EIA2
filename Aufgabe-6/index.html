@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
 </head>
 <body>
+	<form action="https://eisdealer-eia.herokuapp.com/" method="get" id="action">
 	<fieldset class="liefern">
 		<legend>Lieferinformationen</legend>
 		<p>Deine Adresse</p>
@@ -20,7 +21,7 @@
 			<input type="text" name="Vorname" placeholder="Max" required/>
 			<hr/>
 			Straße
-			<input type="text" name="Straße" placeholder="Musterstraße" required/>
+			<input type="text" name="Strasse" placeholder="Musterstraße" required/>
 			<hr/>
 			Haus-Nr.
 			<input type="text" name="Haus-Nr" placeholder="33" required/>
@@ -33,9 +34,6 @@
 			<hr/>
 			E-Mail
 			<input type="email" name="Mail" placeholder="max.mustermann@" required/>
-			<hr/>
-			Telefonnummer*
-			<input type="text" name="Telefonnummer" pattern="[0-9]" placeholder="+49"/>
 			<hr/>
 		<p>Lieferoptionen</p>
 			<input type="radio" name="shipping" bezeichnung="Abholung" price="0"/>
@@ -50,7 +48,7 @@
 		<span id="sorten"></span>
 		<span id="toppings"></span>
 		<span id="shipping"></span>
-		<button id="bestellen">Bestellung abschicken</button>
+		<button type="submit" id="bestellen">Bestellung abschicken</button>
 	</fieldset>
 </body>
 </html>

@@ -1,7 +1,6 @@
 var aufgabe5;
 (function (aufgabe5) {
     window.addEventListener("load", init);
-    let address = "http://https://eisdealer-eia.herokuapp.com/";
     let fieldset = document.createElement("fieldset");
     let legend = document.createElement("legend");
     function init(_event) {
@@ -10,7 +9,7 @@ var aufgabe5;
         rdy();
     }
     function displayEis1(_cat) {
-        document.body.appendChild(fieldset);
+        document.getElementById("action").appendChild(fieldset);
         legend.innerHTML = "Stelle Dein Eis zusammen";
         fieldset.appendChild(legend);
         for (let kategorie in _cat) {
@@ -27,9 +26,10 @@ var aufgabe5;
         switch (_eis.type) {
             case "radio":
                 input.setAttribute("type", _eis.type);
-                input.setAttribute("name", "radiobutton");
+                input.setAttribute("name", "Darreichungsform");
                 input.setAttribute("price", "0");
-                input.setAttribute("bezeichnung", _eis.name);
+                input.setAttribute("value", _eis.name);
+                input.setAttribute("required", "");
                 break;
             case "number":
                 input.setAttribute("type", _eis.type);
@@ -44,6 +44,7 @@ var aufgabe5;
                 input.setAttribute("type", _eis.type);
                 input.setAttribute("price", "0.5");
                 input.setAttribute("name", _eis.name);
+                input.setAttribute("value", "yes");
                 break;
         }
         fieldset.appendChild(input);
@@ -63,7 +64,6 @@ var aufgabe5;
         let check = document.getElementsByTagName("input");
         let newElement = document.createElement("li");
         document.getElementById("sorten").innerHTML = " ";
-        document.getElementById("toppings").innerHTML = " ";
         document.getElementById("price").innerHTML = " ";
         document.getElementById("form").innerHTML = " ";
         document.getElementById("shipping").innerHTML = " ";
@@ -78,7 +78,7 @@ var aufgabe5;
             if (check[i].checked == true && check[i].getAttribute("name") == "radiobutton") {
                 document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
                 let form = document.createElement("li");
-                form.innerHTML = `${check[i].getAttribute("bezeichnung")}`;
+                form.innerHTML = `${check[i].getAttribute("value")}`;
                 document.getElementById("form").appendChild(form);
             }
             if (check[i].type == "number" && Number(check[i].value) > 0) {
@@ -103,7 +103,6 @@ var aufgabe5;
         let empty = [];
         let missing = document.getElementsByTagName("input");
         let sorten = 0;
-        let button = 0;
         for (let i = 0; i < missing.length; i++) {
             if (missing[i].type == "text")
                 if (missing[i].value == "") {
@@ -115,14 +114,6 @@ var aufgabe5;
                     sorten = 1;
                 }
             }
-            if (missing[i].type == "radio") {
-                if (missing[i].checked == true) {
-                    button = 1;
-                }
-            }
-        }
-        if (button == 0) {
-            alert("Darreichungsform wählen");
         }
         if (sorten == 0) {
             alert("Sorte auswählen");
