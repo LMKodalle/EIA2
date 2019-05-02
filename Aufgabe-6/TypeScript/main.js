@@ -1,6 +1,7 @@
 var aufgabe5;
 (function (aufgabe5) {
     window.addEventListener("load", init);
+    let address = "http://https://eisdealer-eia.herokuapp.com/";
     let fieldset = document.createElement("fieldset");
     let legend = document.createElement("legend");
     function init(_event) {

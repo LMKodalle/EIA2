@@ -1,5 +1,6 @@
 namespace aufgabe5 {
     window.addEventListener("load", init);
+    let address: string = "http://https://eisdealer-eia.herokuapp.com/";
 
     let fieldset: HTMLFieldSetElement = document.createElement("fieldset");
     let legend: HTMLLegendElement = document.createElement("legend");
