@@ -22,7 +22,9 @@ namespace L05_Server { //Beginn des L05_Server namespace
 		_response.setHeader("Access-Control-Allow-Origin", "*"); //Alle Anfragen egal von welchem Ursprung ausgehend bekommen Zugriff auf den Server | wird auch im header festgelegt  
 
 		_response.write(_request.url); //Sendet die url des Servers an den Client
-
+		console.log(_request.url); //Gibt die zugegebene Adressinformation in der url auf der Konsole aus
 		_response.end(); //Dem Server wird signalisiert, dass die Antwort vollständig ist
 	} //Ende Funktion
 } //Ende namespace
+
+//Ctrl + C um den Server wieder zu stoppen
