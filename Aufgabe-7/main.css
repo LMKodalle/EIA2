@@ -1,0 +1,47 @@
+#summary {
+        position: absolute;
+        width: 30%;
+        text-align: center;
+        right: 10%;
+        top: 80%;
+        background-color: white;
+}
+body {
+    background: lightblue;
+    font-family: 'Yeon Sung', cursive;
+    font-size: 1.2em;
+}
+header {
+    font-family: 'Ewert', cursive;
+    text-align: center;
+    font-size: 2rem;
+    border: solid black 3px;
+    overflow: hidden;
+    background-color: black;
+}
+header span {
+    color: white;
+}
+
+legend {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.5rem;
+}
+label::after {
+	content:"";
+	display: block;
+}
+li{
+    font-size: 1rem;
+}
+
+fieldset {
+    position: absolute; 
+    width: 40%;
+    top: 5%
+}
+
+.liefern {
+    position: absolute;
+    left: 50%;
+}

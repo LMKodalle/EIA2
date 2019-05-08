@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eisdealer</title>
+	<script src="./TypeScript/data.js"></script>
+    <script src="./TypeScript/main.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+</head>
+<body>
+	<form action="https://eisdealer-eia.herokuapp.com/" method="get" id="action">
+	<fieldset class="liefern">
+		<legend>Lieferinformationen</legend>
+		<p>Deine Adresse</p>
+			Name
+			<input type="text" name="Name" placeholder="Mustermann" required/>
+			<hr/>
+			Vorname
+			<input type="text" name="Vorname" placeholder="Max" required/>
+			<hr/>
+			Straße
+			<input type="text" name="Strasse" placeholder="Musterstraße" required/>
+			<hr/>
+			Haus-Nr.
+			<input type="text" name="Haus-Nr" placeholder="33" required/>
+			<hr/>
+			PLZ
+			<input type="text" name="PLZ" pattern="[0-9]{5}" required/>
+			<hr/>
+			Ort
+			<input type="text" name="Ort" placeholder="Musterstadt" required/>
+			<hr/>
+			E-Mail
+			<input type="email" name="Mail" placeholder="max.mustermann@" required/>
+			<hr/>
+		<p>Lieferoptionen</p>
+			<input type="radio" name="shipping" bezeichnung="Abholung" price="0"/>
+			<label for="shipping">Abholung</label>
+			<input type="radio" name="shipping" bezeichnung="Express" price="1"/>
+			<label for="shipping">Express (+1€)</label> 
+	</fieldset>	
+	<fieldset id="summary">
+		<legend>Zusammenfassung</legend>
+		<span id="price"></span> 
+		<span id="form"></span>
+		<span id="sorten"></span>
+		<span id="toppings"></span>
+		<span id="shipping"></span>
+		<button type="submit" id="bestellen">Bestellung abschicken</button>
+	</fieldset>
+</body>
+</html>
