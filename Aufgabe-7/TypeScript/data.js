@@ -1,6 +1,6 @@
-var aufgabe5;
-(function (aufgabe5) {
-    aufgabe5.categories = {
+var eisdealer;
+(function (eisdealer) {
+    eisdealer.categories = {
         "form": [
             { name: "Waffel", price: 0, type: "radio" },
             { name: "Becher", price: 0, type: "radio" }
@@ -18,5 +18,5 @@ var aufgabe5;
             { name: "Sauce", price: 0.5, type: "checkbox" }
         ]
     };
-})(aufgabe5 || (aufgabe5 = {}));
+})(eisdealer || (eisdealer = {}));
 //# sourceMappingURL=data.js.map

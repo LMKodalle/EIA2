@@ -6,6 +6,14 @@
         top: 80%;
         background-color: white;
 }
+#server {
+        position: absolute;
+        width: 30%;
+        text-align: center;
+        right: 50%;
+        top: 80%;
+        background-color: white;
+}
 body {
     background: lightblue;
     font-family: 'Yeon Sung', cursive;

@@ -9,11 +9,10 @@
     <script src="./TypeScript/main.js"></script>
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
 </head>
-<body>
-	<form action="https://eisdealer-eia.herokuapp.com/" method="get" id="action">
+<body id="action">
 	<fieldset class="liefern">
 		<legend>Lieferinformationen</legend>
-		<p>Deine Adresse</p>
+		<!--<p>Deine Adresse</p>
 			Name
 			<input type="text" name="Name" placeholder="Mustermann" required/>
 			<hr/>
@@ -39,7 +38,7 @@
 			<input type="radio" name="shipping" bezeichnung="Abholung" price="0"/>
 			<label for="shipping">Abholung</label>
 			<input type="radio" name="shipping" bezeichnung="Express" price="1"/>
-			<label for="shipping">Express (+1€)</label> 
+			<label for="shipping">Express (+1€)</label> -->
 	</fieldset>	
 	<fieldset id="summary">
 		<legend>Zusammenfassung</legend>
@@ -48,7 +47,7 @@
 		<span id="sorten"></span>
 		<span id="toppings"></span>
 		<span id="shipping"></span>
-		<button type="submit" id="bestellen">Bestellung abschicken</button>
+		<button id= "bestellen">Bestellen</button>
 	</fieldset>
 </body>
 </html>

@@ -1,30 +1,30 @@
-import * as Http from "http"; //importiert gesamten Inhalt des Node-internen Moduls "http" als Http in den namespace L05_Server
+import * as Http from "http";
+import * as Url from "url";
 
-namespace L05_Server { //Beginn des L05_Server namespace
-	console.log("Starting server"); //In der Konsole wird direkt bei Start der Website "Starting server" angezeigt
-	let port: number = Number(process.env.PORT); //Neue Variable vom Typ number bekommt die globale Umgebungsvariable PORT als Zahlenwert zugewiesen
-	if (!port) //Sollte port nicht zutreffen, dann wird die nächste Code-Zeile ausgeführt
-		port = 8100; //Der Wert von port wird auf 8100 gesetzt, d.h der Webserver (Heroku) hört jetzt nur auf diesen Port
+namespace eisdealer {
+	console.log("Starting server");
+	let port: number = Number(process.env.PORT);
+	if (!port)
+		port = 8100;
 
-	let server: Http.Server = Http.createServer(); //Neue Variable vom Typ Http.Server, welche ein HTTP-Serverobjekt erstellt
-	server.addListener("request", handleRequest); //Serverobjekt bekommt die Aufgabe bei jeder Anfrage an den Server die Funktion handleRequest auszuführen
-	server.addListener("listening", handleListen); // 
-	server.listen(port); //Serverobjekt hört auf den oben definierten Port (8100) und führt nur dann die obigen Listener aus
+	let server: Http.Server = Http.createServer();
+	server.addListener("request", handleRequest);
+	server.addListener("listening", handleListen);
+	server.listen(port);
 
-	function handleListen(): void { //Neue Funktion ohne Rückgabewert
-		console.log("Listening"); //Auf der Konsole wird bei Aufruf der Funktion "Listening" ausgegeben
-	} //Ende Funktion
+	function handleListen(): void {
+		console.log("Listening");
+	}
 
-	function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void { //Neue Funktion ohne Rückgabewert mit den requestListener Parametern request und response
-		console.log("I hear voices!"); //Bei Aufruf der Funktion wird auf der Konsole "I hear voices!" ausgegeben
+	function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerResponse): void {
+		console.log("Request");
 
-		_response.setHeader("content-type", "text/html; charset=utf-8"); //setzt den MIME typ auf HTML-Textformat im header des Webservers
-		_response.setHeader("Access-Control-Allow-Origin", "*"); //Alle Anfragen egal von welchem Ursprung ausgehend bekommen Zugriff auf den Server | wird auch im header festgelegt  
+		_response.setHeader("content-type", "text/html; charset=utf-8");
+		_response.setHeader("Access-Control-Allow-Origin", "*");
 
-		_response.write(_request.url); //Sendet die url des Servers an den Client
-		console.log(_request.url); //Gibt die zugegebene Adressinformation in der url auf der Konsole aus
-		_response.end(); //Dem Server wird signalisiert, dass die Antwort vollständig ist
-	} //Ende Funktion
-} //Ende namespace
-//Wenn man hinter dem / Text hinzufügt, wird dieser auf der Website dargestellt
-//Ctrl + C um den Server wieder zu stoppen
+		let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
+		for (let key in url.query)
+			_response.write("<li>" + key + "<br/>");
+		_response.end();
+	}
+}

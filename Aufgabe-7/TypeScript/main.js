@@ -1,11 +1,12 @@
-var aufgabe5;
-(function (aufgabe5) {
+var eisdealer;
+(function (eisdealer) {
     window.addEventListener("load", init);
+    let address = "http://localhost:8100/?";
     let fieldset = document.createElement("fieldset");
     let legend = document.createElement("legend");
     function init(_event) {
-        console.log(aufgabe5.categories);
-        displayEis1(aufgabe5.categories);
+        console.log(eisdealer.categories);
+        displayEis1(eisdealer.categories);
         rdy();
     }
     function displayEis1(_cat) {
@@ -61,7 +62,6 @@ var aufgabe5;
     function click(_event) {
         let start = 0;
         let check = document.getElementsByTagName("input");
-        let newElement = document.createElement("li");
         document.getElementById("sorten").innerHTML = " ";
         document.getElementById("price").innerHTML = " ";
         document.getElementById("form").innerHTML = " ";
@@ -73,12 +73,14 @@ var aufgabe5;
                 start += price;
                 document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
                 let toppings = document.createElement("li");
+                toppings.setAttribute("id", `${check[i].name}`);
                 toppings.innerHTML = `${check[i].name}`;
                 document.getElementById("toppings").appendChild(toppings);
             }
             if (check[i].checked == true && check[i].getAttribute("name") == "Darreichungsform") {
                 document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
                 let form = document.createElement("li");
+                form.setAttribute("id", `${check[i].value}`);
                 form.innerHTML = `${check[i].getAttribute("value")}`;
                 document.getElementById("form").appendChild(form);
             }
@@ -87,6 +89,7 @@ var aufgabe5;
                 start += price;
                 document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
                 let sorten = document.createElement("li");
+                sorten.setAttribute("id", `${check[i].value} x ${check[i].name}`);
                 sorten.innerHTML = `${check[i].value} x ${check[i].name}`;
                 document.getElementById("sorten").appendChild(sorten);
             }
@@ -121,10 +124,31 @@ var aufgabe5;
         }
         if (empty.length == 0) {
             alert("Vielen Dank für Deine Bestellung");
+            let liste = document.getElementsByTagName("li");
+            for (let i = 0; i < liste.length; i++) {
+                address += `${liste[i].id}&`;
+            }
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", address, true);
+            xhr.addEventListener("readystatechange", finishRequest);
+            xhr.send();
         }
         else {
             alert(`Du musst unbedingt noch ${empty} angeben`);
         }
     }
-})(aufgabe5 || (aufgabe5 = {}));
+    function finishRequest(_event) {
+        let xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            console.log("response: " + xhr.response);
+            let fieldset2nd = document.createElement("fieldset");
+            let legend2nd = document.createElement("legend");
+            fieldset2nd.setAttribute("id", "server");
+            legend2nd.innerHTML = "Ihre Bestätigung";
+            fieldset2nd.append(legend2nd);
+            fieldset2nd.innerHTML = xhr.response;
+            document.getElementById("action").appendChild(fieldset2nd);
+        }
+    }
+})(eisdealer || (eisdealer = {}));
 //# sourceMappingURL=main.js.map

@@ -1,4 +1,4 @@
-namespace aufgabe5 {
+namespace eisdealer {
     export interface Eiskategorie {
         name: string;
         price: number;
@@ -8,7 +8,7 @@ namespace aufgabe5 {
     export interface KeyArray {
         [kategorie: string]: Eiskategorie[];
     }
-
+    
     export let categories: KeyArray = {
         "form": [
             { name: "Waffel", price: 0, type: "radio"},

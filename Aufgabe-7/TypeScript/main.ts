@@ -1,5 +1,6 @@
-namespace aufgabe5 {
+namespace eisdealer {
     window.addEventListener("load", init);
+    let address: string = "http://localhost:8100/?";
 
     let fieldset: HTMLFieldSetElement = document.createElement("fieldset");
     let legend: HTMLLegendElement = document.createElement("legend");
@@ -68,7 +69,6 @@ namespace aufgabe5 {
     function click(_event: Event): void {
         let start: number = 0;
         let check: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
-        let newElement: HTMLElement = document.createElement("li");
         document.getElementById("sorten").innerHTML = " ";
         document.getElementById("price").innerHTML = " ";
         document.getElementById("form").innerHTML = " ";
@@ -80,12 +80,14 @@ namespace aufgabe5 {
                 start += price;
                 document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
                 let toppings: HTMLElement = document.createElement("li");
+                toppings.setAttribute("id", `${check[i].name}`);
                 toppings.innerHTML = `${check[i].name}`;
                 document.getElementById("toppings").appendChild(toppings);
             }
             if (check[i].checked == true && check[i].getAttribute("name") == "Darreichungsform") {
                 document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
                 let form: HTMLElement = document.createElement("li");
+                form.setAttribute("id", `${check[i].value}`);
                 form.innerHTML = `${check[i].getAttribute("value")}`;
                 document.getElementById("form").appendChild(form);
             }
@@ -94,6 +96,7 @@ namespace aufgabe5 {
                 start += price;
                 document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
                 let sorten: HTMLElement = document.createElement("li");
+                sorten.setAttribute("id", `${check[i].value} x ${check[i].name}`);
                 sorten.innerHTML = `${check[i].value} x ${check[i].name}`;
                 document.getElementById("sorten").appendChild(sorten);
             }
@@ -125,13 +128,37 @@ namespace aufgabe5 {
             }
         } 
         if (sorten == 0) {
-            alert("Sorte auswählen")
+            alert("Sorte auswählen");
         }
         if (empty.length == 0) {
             alert("Vielen Dank für Deine Bestellung");
+            let liste: HTMLCollectionOf<HTMLLIElement> = document.getElementsByTagName("li"); 
+            for (let i: number = 0; i < liste.length; i++) {
+                address += `${liste[i].id}&`;
+            }
+            let xhr: XMLHttpRequest = new XMLHttpRequest();
+            xhr.open("GET", address, true);
+            xhr.addEventListener("readystatechange", finishRequest);
+            xhr.send();
         }
         else {
             alert(`Du musst unbedingt noch ${empty} angeben`);
         }
     }
+    
+
+    function finishRequest(_event: ProgressEvent): void {
+        let xhr: XMLHttpRequest = <XMLHttpRequest>_event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            console.log("response: " + xhr.response);
+            let fieldset2nd: HTMLFieldSetElement = document.createElement("fieldset");
+            let legend2nd: HTMLLegendElement = document.createElement("legend");
+            fieldset2nd.setAttribute("id", "server");
+            legend2nd.innerHTML = "Ihre Bestätigung";
+            fieldset2nd.append(legend2nd);
+            fieldset2nd.innerHTML = xhr.response;
+            document.getElementById("action").appendChild(fieldset2nd);
+        }
+    }
+
 }
