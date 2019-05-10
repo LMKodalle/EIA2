@@ -1,7 +1,7 @@
 var eisdealer;
 (function (eisdealer) {
     window.addEventListener("load", init);
-    let address = "http://localhost:8100/?";
+    let address = "https://eisdealer-eia.herokuapp.com/?";
     let fieldset = document.createElement("fieldset");
     let legend = document.createElement("legend");
     function init(_event) {
@@ -60,8 +60,8 @@ var eisdealer;
         }
     }
     function click(_event) {
-        let start = 0;
         let check = document.getElementsByTagName("input");
+        let start = 0;
         document.getElementById("sorten").innerHTML = " ";
         document.getElementById("price").innerHTML = " ";
         document.getElementById("form").innerHTML = " ";
@@ -98,6 +98,7 @@ var eisdealer;
                 start += price;
                 document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
                 let shipping = document.createElement("li");
+                shipping.setAttribute("id", `${check[i].getAttribute("bezeichnung")}`);
                 shipping.innerHTML = `${check[i].getAttribute("bezeichnung")}`;
                 document.getElementById("shipping").appendChild(shipping);
             }
@@ -128,6 +129,7 @@ var eisdealer;
             for (let i = 0; i < liste.length; i++) {
                 address += `${liste[i].id}&`;
             }
+            address += `${document.getElementById("price").innerHTML}`;
             let xhr = new XMLHttpRequest();
             xhr.open("GET", address, true);
             xhr.addEventListener("readystatechange", finishRequest);
@@ -142,12 +144,12 @@ var eisdealer;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             console.log("response: " + xhr.response);
             let fieldset2nd = document.createElement("fieldset");
-            let legend2nd = document.createElement("legend");
-            fieldset2nd.setAttribute("id", "server");
-            legend2nd.innerHTML = "Ihre Bestätigung";
-            fieldset2nd.append(legend2nd);
-            fieldset2nd.innerHTML = xhr.response;
             document.getElementById("action").appendChild(fieldset2nd);
+            fieldset2nd.setAttribute("id", "server");
+            if (document.getElementById) {
+                fieldset2nd.innerHTML = "Ihre Bestellung war erfolreich!" + xhr.response;
+                address = "https://eisdealer-eia.herokuapp.com/?";
+            }
         }
     }
 })(eisdealer || (eisdealer = {}));

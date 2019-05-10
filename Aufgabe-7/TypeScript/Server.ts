@@ -1,7 +1,6 @@
 import * as Http from "http";
 import * as Url from "url";
 
-namespace eisdealer {
 	console.log("Starting server");
 	let port: number = Number(process.env.PORT);
 	if (!port)
@@ -24,7 +23,6 @@ namespace eisdealer {
 
 		let url: Url.UrlWithParsedQuery = Url.parse(_request.url, true);
 		for (let key in url.query)
-			_response.write("<li>" + key + "<br/>");
+			_response.write("<li>" + key + "</li>");
 		_response.end();
 	}
-}

@@ -1,6 +1,6 @@
 namespace eisdealer {
     window.addEventListener("load", init);
-    let address: string = "http://localhost:8100/?";
+    let address: string = "https://eisdealer-eia.herokuapp.com/?";
 
     let fieldset: HTMLFieldSetElement = document.createElement("fieldset");
     let legend: HTMLLegendElement = document.createElement("legend");
@@ -65,10 +65,9 @@ namespace eisdealer {
             fieldset.addEventListener("change", click);
         }
     }
-
+    
     function click(_event: Event): void {
-        let start: number = 0;
-        let check: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
+        let check: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");let start: number = 0;
         document.getElementById("sorten").innerHTML = " ";
         document.getElementById("price").innerHTML = " ";
         document.getElementById("form").innerHTML = " ";
@@ -105,6 +104,7 @@ namespace eisdealer {
                 start += price;
                 document.getElementById("price").innerHTML = start.toFixed(2).toString() + " " + "€";
                 let shipping: HTMLElement = document.createElement("li");
+                shipping.setAttribute("id", `${check[i].getAttribute("bezeichnung")}`);
                 shipping.innerHTML = `${check[i].getAttribute("bezeichnung")}`;
                 document.getElementById("shipping").appendChild(shipping);
         }
@@ -136,11 +136,12 @@ namespace eisdealer {
             for (let i: number = 0; i < liste.length; i++) {
                 address += `${liste[i].id}&`;
             }
+            address += `${document.getElementById("price").innerHTML}` ;
             let xhr: XMLHttpRequest = new XMLHttpRequest();
             xhr.open("GET", address, true);
             xhr.addEventListener("readystatechange", finishRequest);
             xhr.send();
-        }
+        }   
         else {
             alert(`Du musst unbedingt noch ${empty} angeben`);
         }
@@ -152,12 +153,13 @@ namespace eisdealer {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             console.log("response: " + xhr.response);
             let fieldset2nd: HTMLFieldSetElement = document.createElement("fieldset");
-            let legend2nd: HTMLLegendElement = document.createElement("legend");
-            fieldset2nd.setAttribute("id", "server");
-            legend2nd.innerHTML = "Ihre Bestätigung";
-            fieldset2nd.append(legend2nd);
-            fieldset2nd.innerHTML = xhr.response;
             document.getElementById("action").appendChild(fieldset2nd);
+            
+            fieldset2nd.setAttribute("id", "server");
+            if (document.getElementById) {
+            fieldset2nd.innerHTML = "Ihre Bestellung war erfolreich!" + xhr.response;
+            address = "https://eisdealer-eia.herokuapp.com/?";
+            }
         }
     }
 
