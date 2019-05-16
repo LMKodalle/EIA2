@@ -5,12 +5,14 @@
 	"author": "Jirka, adapted by Lukas",
 	"main": "Server.js",
 	"scripts": {
-		"start": "node Aufgabe-7/TypeScript/Server.js"
+		"start": "node Aufgabe-8/TypeScript/Server.js"
 	},
 	"engines": {
 		"node": "8.11.3"
 	},
 	"dependencies": {
-		"@types/node": "^11.13.8"
+		"@types/mongodb": "^3.1.27",
+		"@types/node": "^11.13.8",
+		"mongodb": "^3.2.4"
 	}
 }
