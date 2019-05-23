@@ -7,8 +7,10 @@ namespace DBClient {
         console.log("Init");
         let insertButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("insert");
         let refreshButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("refresh");
+        let searchButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("search");
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
+        searchButton.addEventListener("click", search);
     }
 
     function insert(_event: Event): void {
@@ -23,6 +25,13 @@ namespace DBClient {
 
     function refresh(_event: Event): void {
         let query: string = "command=refresh";
+        sendRequest(query, handleFindResponse);
+    }
+
+    function search(_event: Event): void {
+        let inputs: HTMLCollectionOf<HTMLInputElement> = document.getElementsByTagName("input");
+        let query: string = "command=search";
+        query += "&matrikel=" + inputs[3].value;
         sendRequest(query, handleFindResponse);
     }
 

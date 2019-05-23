@@ -8,7 +8,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Mongo = require("mongodb");
 console.log("Database starting");
 let databaseURL = "mongodb://localhost:27017";
-let databaseName = "Test";
+let databaseName = "test";
 let db;
 let students;
 // running on heroku?
@@ -41,7 +41,7 @@ function handleInsert(_e) {
 // try to fetch all documents from database, then activate callback
 function findAll(_callback) {
     // cursor points to the retreived set of documents in memory
-    var cursor = students.find();
+    let cursor = students.find();
     // try to convert to array, then activate callback "prepareAnswer"
     cursor.toArray(prepareAnswer);
     // toArray-handler receives two standard parameters, an error object and the array
@@ -55,4 +55,16 @@ function findAll(_callback) {
     }
 }
 exports.findAll = findAll;
+function findMatrikelnr(_callback, _matrikel) {
+    let cursor = students.find({ matrikel: _matrikel });
+    cursor.toArray(prepareAnswer);
+    function prepareAnswer(_e, studentArray) {
+        if (_e)
+            _callback("Error" + _e);
+        else
+            // stringify creates a json-string, passed it back to _callback
+            _callback(JSON.stringify(studentArray));
+    }
+}
+exports.findMatrikelnr = findMatrikelnr;
 //# sourceMappingURL=Database.js.map

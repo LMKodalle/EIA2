@@ -8,7 +8,7 @@ import * as Mongo from "mongodb";
 console.log("Database starting");
 
 let databaseURL: string = "mongodb://localhost:27017";
-let databaseName: string = "Test";
+let databaseName: string = "test";
 let db: Mongo.Db;
 let students: Mongo.Collection;
 
@@ -46,7 +46,7 @@ function handleInsert(_e: Mongo.MongoError): void {
 // try to fetch all documents from database, then activate callback
 export function findAll(_callback: Function): void {
     // cursor points to the retreived set of documents in memory
-    var cursor: Mongo.Cursor = students.find();
+    let cursor: Mongo.Cursor = students.find();
     // try to convert to array, then activate callback "prepareAnswer"
     cursor.toArray(prepareAnswer);
 
@@ -58,5 +58,17 @@ export function findAll(_callback: Function): void {
         else
             // stringify creates a json-string, passed it back to _callback
             _callback(JSON.stringify(studentArray));
+    }
+}
+
+export function findMatrikelnr(_callback: Function, _matrikel: number): void {
+    let cursor: Mongo.Cursor = students.find({matrikel: _matrikel});
+    cursor.toArray(prepareAnswer);
+    function prepareAnswer(_e: Mongo.MongoError, studentArray: StudentData[]): void {
+        if (_e)
+            _callback("Error" + _e);
+        else
+            // stringify creates a json-string, passed it back to _callback
+           _callback(JSON.stringify(studentArray));
     }
 }

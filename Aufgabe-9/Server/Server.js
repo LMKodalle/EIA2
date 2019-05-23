@@ -23,6 +23,7 @@ function handleRequest(_request, _response) {
     console.log("Request received");
     let query = Url.parse(_request.url, true).query;
     let command = query["command"];
+    let matrikel = query["matrikel"];
     switch (command) {
         case "insert":
             let student = {
@@ -35,6 +36,13 @@ function handleRequest(_request, _response) {
             break;
         case "refresh":
             Database.findAll(findCallback);
+            break;
+        case "search":
+            for (let key in query) {
+                if (key == "matrikel") {
+                    Database.findMatrikelnr(findCallback, Number(matrikel));
+                }
+            }
             break;
         default:
             respond(_response, "unknown command: " + command);

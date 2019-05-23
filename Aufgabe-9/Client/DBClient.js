@@ -7,8 +7,10 @@ var DBClient;
         console.log("Init");
         let insertButton = document.getElementById("insert");
         let refreshButton = document.getElementById("refresh");
+        let searchButton = document.getElementById("search");
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
+        searchButton.addEventListener("click", search);
     }
     function insert(_event) {
         let inputs = document.getElementsByTagName("input");
@@ -21,6 +23,12 @@ var DBClient;
     }
     function refresh(_event) {
         let query = "command=refresh";
+        sendRequest(query, handleFindResponse);
+    }
+    function search(_event) {
+        let inputs = document.getElementsByTagName("input");
+        let query = "command=search";
+        query += "&matrikel=" + inputs[3].value;
         sendRequest(query, handleFindResponse);
     }
     function sendRequest(_query, _callback) {
