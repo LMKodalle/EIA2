@@ -6,6 +6,7 @@ var Aufgabe10;
     function init() {
         canvas = document.getElementsByTagName("canvas")[0];
         crc = canvas.getContext("2d");
+        water();
         ground();
         for (let i = 0; i < Math.floor((Math.random() * 10) + 1); i++) {
             let x = Math.random() * canvas.width;
@@ -17,6 +18,13 @@ var Aufgabe10;
             let y = Math.random() * canvas.height;
             fish(x, y);
         }
+    }
+    function water() {
+        let water = crc.createLinearGradient(0, 50, 0, 200);
+        water.addColorStop(0, "white");
+        water.addColorStop(1, "aqua");
+        crc.fillStyle = water;
+        crc.fillRect(0, 0, canvas.width, canvas.height);
     }
     function ground() {
         let ground = new Path2D();
@@ -57,9 +65,10 @@ var Aufgabe10;
         crc.stroke(bubblebubble);
     }
     function fish(_x, _y) {
+        let color = ["#B70B2F", "#A8BDFE", "#F76D1E", "#17C445", "#841337", "#4F82CE", "#E0DEBD", "#82E2FA"];
         let head = new Path2D();
         head.ellipse(_x, _y - 80, 30, 50, 20, 0, 2 * Math.PI);
-        crc.fillStyle = "orange";
+        crc.fillStyle = color[Math.floor((Math.random() * 8) + 1)];
         crc.fill(head);
         crc.stroke(head);
         let eyeballs = new Path2D();
@@ -78,7 +87,7 @@ var Aufgabe10;
         tail.lineTo(_x - 46, _y - 60);
         tail.closePath();
         crc.stroke(tail);
-        crc.fillStyle = "purple";
+        crc.fillStyle = color[Math.floor((Math.random() * 8) + 1)];
         crc.fill(tail);
         crc.stroke(tail);
         let arms = new Path2D();

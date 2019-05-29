@@ -6,6 +6,7 @@ namespace Aufgabe10 {
 	function init(): void {
 		canvas = document.getElementsByTagName("canvas")[0];
 		crc = canvas.getContext("2d");
+		water();
 		ground();
 		for (let i: number = 0; i < Math.floor((Math.random() * 10) + 1); i++) {
 			let x: number = Math.random() * canvas.width;
@@ -18,13 +19,21 @@ namespace Aufgabe10 {
 			fish(x, y);
 		}
 	}
+	function water(): void {
+		let water: CanvasGradient = crc.createLinearGradient(0, 50, 0, 200);
+		water.addColorStop(0, "white");
+		water.addColorStop(1, "aqua");
+		crc.fillStyle = water;
+		crc.fillRect(0, 0, canvas.width, canvas.height);
+	}
+
 	function ground(): void {
 		let ground: Path2D = new Path2D();
 		ground.rect(0, 300, 600, 300);
 		crc.fillStyle = "#c2b280";
 		crc.fill(ground);
 		crc.stroke(ground);
-		
+
 		let rock: Path2D = new Path2D();
 		rock.moveTo(400, 350);
 		rock.quadraticCurveTo(400, 200, 250, 350);
@@ -46,7 +55,7 @@ namespace Aufgabe10 {
 		crc.fillStyle = "green";
 		crc.fill(plant);
 		crc.stroke(plant);
-		crc.stroke(plant); 
+		crc.stroke(plant);
 
 	}
 
@@ -56,19 +65,20 @@ namespace Aufgabe10 {
 		crc.fillStyle = "white";
 		crc.fill(bubble);
 		crc.stroke(bubble);
-		
+
 		let bubblebubble: Path2D = new Path2D();
 		bubblebubble.arc(_x, _y - 53, 2, 0, 2 * Math.PI);
 		crc.stroke(bubblebubble);
 	}
-	
+
 	function fish(_x: number, _y: number): void {
+		let color: string[] = ["#B70B2F", "#A8BDFE", "#F76D1E", "#17C445", "#841337", "#4F82CE", "#E0DEBD", "#82E2FA"];
 		let head: Path2D = new Path2D();
 		head.ellipse(_x, _y - 80, 30, 50, 20, 0, 2 * Math.PI);
-		crc.fillStyle = "orange";
+		crc.fillStyle = color[Math.floor((Math.random() * 8) + 1)];
 		crc.fill(head);
 		crc.stroke(head);
-		
+
 		let eyeballs: Path2D = new Path2D();
 		eyeballs.arc(_x + 30, _y - 95, 8, 0, 2 * Math.PI);
 		crc.fillStyle = "white";
@@ -87,7 +97,7 @@ namespace Aufgabe10 {
 		tail.lineTo(_x - 46, _y - 60);
 		tail.closePath();
 		crc.stroke(tail);
-		crc.fillStyle = "purple";
+		crc.fillStyle = color[Math.floor((Math.random() * 8) + 1)];
 		crc.fill(tail);
 		crc.stroke(tail);
 
