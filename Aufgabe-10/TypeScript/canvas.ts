@@ -40,8 +40,12 @@ namespace Aufgabe10 {
 		plant.moveTo(500, 380);
 		plant.bezierCurveTo(400, 300, 500, 200, 500, 250);
 		plant.bezierCurveTo(480, 300, 550, 300, 520, 200);
-		plant.bezierCurveTo(560, 200, 570, 320, 580, 250);
-		plant.bezierCurveTo(500, 380, 570, 320, 580, 380);
+		plant.bezierCurveTo(560, 200, 550, 320, 580, 250);
+		plant.bezierCurveTo(590, 250, 590, 350, 530, 380);
+		plant.closePath();
+		crc.fillStyle = "green";
+		crc.fill(plant);
+		crc.stroke(plant);
 		crc.stroke(plant); 
 
 	}
