@@ -18,7 +18,12 @@ namespace Aufgabe10 {
 			let y: number = Math.random() * canvas.height;
 			fish(x, y);
 		}
+		for (let i: number = 0; i < 2; i++) {
+			let x: number = Math.random() * canvas.width;
+			crab(x);
+		}
 	}
+
 	function water(): void {
 		let water: CanvasGradient = crc.createLinearGradient(0, 50, 0, 200);
 		water.addColorStop(0, "white");
@@ -33,6 +38,16 @@ namespace Aufgabe10 {
 		crc.fillStyle = "#c2b280";
 		crc.fill(ground);
 		crc.stroke(ground);
+
+		for (let i: number = 0; i < 180; i++) {
+			let x: number = Math.random() * canvas.width;
+			let y: number = Math.floor((Math.random() * 399) + 300);
+			let kies: Path2D = new Path2D();
+			kies.arc(x, y, 3, 0, 2 * Math.PI);
+			crc.fillStyle = "brown";
+			crc.fill(kies);
+			crc.stroke(kies);
+		}
 
 		let rock: Path2D = new Path2D();
 		rock.moveTo(400, 350);
@@ -56,7 +71,6 @@ namespace Aufgabe10 {
 		crc.fill(plant);
 		crc.stroke(plant);
 		crc.stroke(plant);
-
 	}
 
 	function bubble(_x: number, _y: number): void {
@@ -107,8 +121,46 @@ namespace Aufgabe10 {
 		arms.lineTo(_x - 10, _y - 70);
 		arms.closePath();
 		crc.stroke(arms);
-		crc.fillStyle = "purple";
+		crc.fillStyle = color[Math.floor((Math.random() * 8) + 1)];
 		crc.fill(arms);
 		crc.stroke(arms);
+	}
+
+	function crab(_x: number): void {
+		let crab: Path2D = new Path2D();
+		crab.ellipse(_x, 300, 20, 30, 1.5 * Math.PI, 0, 2 * Math.PI);
+		crc.fillStyle = "orange";
+		crc.fill(crab);
+		crc.stroke(crab);
+		
+		let claws: Path2D = new Path2D();
+		claws.moveTo(_x + 30, 300);
+		claws.bezierCurveTo(_x + 30, 300, _x + 50, 250, _x + 80, 320);
+		claws.bezierCurveTo(_x + 50, 320, _x + 50, 260, _x + 50, 320);
+		claws.bezierCurveTo(_x + 50, 370, _x + 30, 280, _x + 30, 300);
+		claws.moveTo(_x - 30, 300);
+		claws.bezierCurveTo(_x - 30, 300, _x - 50, 250, _x - 80, 320);
+		claws.bezierCurveTo(_x - 50, 320, _x - 50, 260, _x - 50, 320);
+		claws.bezierCurveTo(_x - 50, 370, _x - 30, 280, _x - 30, 300);
+		crc.fillStyle = "red";
+		crc.fill(claws);
+		crc.stroke(claws);
+		// x 200 y 300
+		
+		let eyeballs: Path2D = new Path2D();
+		eyeballs.arc(_x + 28, 280 , 8, 0, 2 * Math.PI);
+		eyeballs.moveTo(_x - 20, 280);
+		eyeballs.arc(_x - 28, 280 , 8, 0, 2 * Math.PI);
+		crc.fillStyle = "white";
+		crc.fill(eyeballs);
+		crc.stroke(eyeballs);
+
+		let iris: Path2D = new Path2D();
+		iris.arc(_x + 28, 280, 2, 0, 2 * Math.PI);
+		iris.moveTo(_x - 30, 280);
+		iris.arc(_x - 28, 280, 2, 0, 2 * Math.PI);
+		crc.fillStyle = "black";
+		crc.fill(iris);
+		crc.stroke(iris);
 	}
 }
