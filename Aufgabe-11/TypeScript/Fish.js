@@ -45,16 +45,16 @@ var Aufgabe11;
             this.x += this.dx;
             this.y += this.dy;
             if (this.x + 100 < 0) {
-                this.x = 600;
+                this.x = 700;
             }
             if (this.x - 100 > 600) {
-                this.x = 0;
+                this.x = -100;
             }
             if (this.y - 100 > 400) {
-                this.y = 0;
+                this.y = -100;
             }
             if (this.y + 100 < 0) {
-                this.y = 400;
+                this.y = 500;
             }
         }
     }
