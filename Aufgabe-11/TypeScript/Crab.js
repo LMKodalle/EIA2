@@ -42,10 +42,10 @@ var Aufgabe11;
         move() {
             this.x += this.dx;
             if (this.x - 80 > 600) {
-                this.x = 0;
+                this.x = -80;
             }
             if (this.x + 80 < 0) {
-                this.x = 600;
+                this.x = 680;
             }
         }
     }
