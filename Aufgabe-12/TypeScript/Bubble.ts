@@ -1,9 +1,10 @@
 namespace Aufgabe11 {
     
-    export class Bubble {
-        x: number;
-        y: number;
-        dy: number;
+    export class Bubble extends MovingObject {  
+        constructor() {
+            super();
+            this.dy = Math.random() * -2 - 1;
+        }
 
         draw(): void {
             let bubble: Path2D = new Path2D();

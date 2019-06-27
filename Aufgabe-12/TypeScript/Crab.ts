@@ -1,10 +1,12 @@
 namespace Aufgabe11 {
     
-    export class Crab {
-        x: number;
-        y: number;
-        dx: number;
+    export class Crab extends MovingObject {
 
+        constructor() {
+            super();
+            this.dx = Math.random() * 10 - 5;
+        }
+        
         draw(): void {
             let color: string[] = ["pink", "white", "red", "blue"];
             let crab: Path2D = new Path2D();

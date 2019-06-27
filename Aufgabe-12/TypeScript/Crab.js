@@ -1,6 +1,10 @@
 var Aufgabe11;
 (function (Aufgabe11) {
-    class Crab {
+    class Crab extends Aufgabe11.MovingObject {
+        constructor() {
+            super();
+            this.dx = Math.random() * 10 - 5;
+        }
         draw() {
             let color = ["pink", "white", "red", "blue"];
             let crab = new Path2D();

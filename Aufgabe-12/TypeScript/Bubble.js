@@ -1,6 +1,10 @@
 var Aufgabe11;
 (function (Aufgabe11) {
-    class Bubble {
+    class Bubble extends Aufgabe11.MovingObject {
+        constructor() {
+            super();
+            this.dy = Math.random() * -2 - 1;
+        }
         draw() {
             let bubble = new Path2D();
             bubble.arc(this.x - 3, this.y - 50, 10, 0, 2 * Math.PI);

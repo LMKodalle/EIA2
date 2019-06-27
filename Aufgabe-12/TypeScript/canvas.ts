@@ -3,57 +3,41 @@ namespace Aufgabe11 {
 	document.addEventListener("DOMContentLoaded", init);
 	export let crc: CanvasRenderingContext2D;
 	let canvas: HTMLCanvasElement;
-	let fishArray: Fish[] = [];
-	let crabArray: Crab[] = [];
-	let bubbleArray: Bubble[] = [];
+	let seaArray: MovingObject[] = [];
 	let fps: number = 30;
 	let imageData: ImageData;
 
 	function init(): void {
 		canvas = document.getElementsByTagName("canvas")[0];
 		crc = canvas.getContext("2d");
+		canvas.addEventListener("click", handleClick);
 		drawBackground();
 		imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
-		for (let i: number = 0; i < 10; i++) {
-			let x: number = Math.random() * canvas.width;
-			let y: number = Math.random() * canvas.height;
-			let dx: number = Math.random() * 10 - 5;
-			let dy: number = Math.random() * 10 - 5;
-			let fish: Fish;
-			fish = new Fish();
-			fish.x = x;
-			fish.y = y;
-			fish.dx = dx;
-			fish.dy = dy;
-			fishArray.push(fish);
-			fish.draw();
+		canvas = document.getElementsByTagName("canvas")[0];
+		crc = canvas.getContext("2d");
+		drawBackground();
+		imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
+		for (let i: number = 0; i < 5; i++) {
+			let fish: Fish = new Fish();
+			seaArray.push(fish);
 		}
 		for (let i: number = 0; i < 2; i++) {
-			let x: number = Math.random() * canvas.width;
-			let y: number = Math.random() * canvas.height;
-			let dx: number = Math.random() * 10 - 5;
-			let crab: Crab;
-			crab = new Crab();
-			crab.x = x;
-			crab.y = y;
-			crab.dx = dx;
-			crabArray.push(crab);
-			crab.draw();
+			let crab: Crab = new Crab();
+			seaArray.push(crab);
 		}
 		for (let i: number = 0; i < 10; i++) {
-			let x: number = Math.random() * canvas.width;
-			let y: number = Math.random() * canvas.height;
-			let dy: number = Math.random() * -2 - 1;
-			let bubble: Bubble;
-			bubble = new Bubble();
-			bubble.x = x;
-			bubble.y = y;
-			bubble.dy = dy;
-			bubbleArray.push(bubble);
-			bubble.draw();
+			let bubble: Bubble = new Bubble();
+			seaArray.push(bubble);
 		}
 		update();
 	}
+
+	function handleClick(_event: MouseEvent): void {
+		console.log(_event);
+		let food: Food = new Food(_event.clientX, _event.clientY);
+		seaArray.push(food);
+	}
+
 
 	function drawBackground(): void {
 
@@ -108,14 +92,8 @@ namespace Aufgabe11 {
 		crc.clearRect(0, 0, canvas.width, canvas.height);
 		crc.putImageData(imageData, 0, 0);
 
-		for (let i: number = 0; i < fishArray.length; i++) {
-			fishArray[i].update();
-		}
-		for (let i: number = 0; i < crabArray.length; i++) {
-			crabArray[i].update();
-		}
-		for (let i: number = 0; i < bubbleArray.length; i++) {
-			bubbleArray[i].update();
+		for (let i: number = 0; i < seaArray.length; i++) {
+			seaArray[i].update();
 		}
 	}
 }

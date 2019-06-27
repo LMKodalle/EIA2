@@ -1,6 +1,11 @@
 var Aufgabe11;
 (function (Aufgabe11) {
-    class Fish {
+    class Fish extends Aufgabe11.MovingObject {
+        constructor() {
+            super();
+            this.dx = Math.random() * 10 - 5;
+            this.dy = Math.random() * 10 - 5;
+        }
         draw() {
             let color = ["#B70B2F", "#A8BDFE", "#F76D1E", "#17C445", "#841337", "#4F82CE", "#E0DEBD", "#82E2FA"];
             let head = new Path2D();
@@ -37,10 +42,6 @@ var Aufgabe11;
             Aufgabe11.crc.fill(arms);
             Aufgabe11.crc.stroke(arms);
         }
-        update() {
-            this.move();
-            this.draw();
-        }
         move() {
             this.x += this.dx;
             this.y += this.dy;
@@ -56,6 +57,10 @@ var Aufgabe11;
             if (this.y + 100 < 0) {
                 this.y = 500;
             }
+        }
+        update() {
+            this.move();
+            this.draw();
         }
     }
     Aufgabe11.Fish = Fish;

@@ -1,10 +1,12 @@
 namespace Aufgabe11 {
 
-    export class Fish {
-        x: number;
-        y: number;
-        dx: number;
-        dy: number;
+    export class Fish extends MovingObject {
+
+        constructor() {
+            super();
+            this.dx = Math.random() * 10 - 5;
+            this.dy = Math.random() * 10 - 5;
+        }
 
         draw(): void {
             let color: string[] = ["#B70B2F", "#A8BDFE", "#F76D1E", "#17C445", "#841337", "#4F82CE", "#E0DEBD", "#82E2FA"];
@@ -46,19 +48,15 @@ namespace Aufgabe11 {
             crc.fill(arms);
             crc.stroke(arms);
         }
-        update(): void {
-			this.move();
-			this.draw();
-		}
 
-		move(): void {
-            this.x += this.dx; 
+        move(): void {
+            this.x += this.dx;
             this.y += this.dy;
             if (this.x + 100 < 0) {
-                this.x = 700; 
+                this.x = 700;
             }
             if (this.x - 100 > 600) {
-                this.x = - 100; 
+                this.x = - 100;
             }
             if (this.y - 100 > 400) {
                 this.y = -100;
@@ -66,6 +64,11 @@ namespace Aufgabe11 {
             if (this.y + 100 < 0) {
                 this.y = 500;
             }
+        }
+        
+        update(): void {
+            this.move(); 
+            this.draw();
 		}
-}
+    }
 }
