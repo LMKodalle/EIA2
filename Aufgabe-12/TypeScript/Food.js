@@ -9,7 +9,7 @@ var Aufgabe11;
         }
         draw() {
             let piece = new Path2D();
-            piece.arc(this.x, this.y, 3, 0, 2 * Math.PI);
+            piece.arc(this.x, this.y, 5, 0, 2 * Math.PI);
             Aufgabe11.crc.fillStyle = "brown";
             Aufgabe11.crc.fill(piece);
             Aufgabe11.crc.stroke(piece);

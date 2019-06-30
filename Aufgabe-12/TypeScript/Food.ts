@@ -10,7 +10,7 @@ namespace Aufgabe11 {
         
         draw(): void {
             let piece: Path2D = new Path2D();
-            piece.arc(this.x, this.y, 3, 0, 2 * Math.PI);
+            piece.arc(this.x, this.y, 5, 0, 2 * Math.PI);
             crc.fillStyle = "brown";
             crc.fill(piece);
             crc.stroke(piece);
