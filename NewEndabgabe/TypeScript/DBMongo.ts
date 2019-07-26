@@ -23,20 +23,25 @@ namespace Endgame {
 
     function handleInsertResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            alert(xhr.response);
-        }
     }
 
     function handleFindResponse(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let playerArray: Player[] = JSON.parse(xhr.response);
-            document.getElementById("nickname").innerHTML = " ";
+            for (let i: number = 0; i < playerArray.length; i++) {
+                playerArray.sort(sort);
+            }
+            document.getElementById("rank").innerHTML = " ";
 
-            for (let i: number = playerArray.length - 5; i < playerArray.length; i++) {
-                document.getElementById("nickname").innerHTML += `<div>${playerArray[i].name} : ${playerArray[i].score}</div>`;
+            for (let i: number = 0; i < 5; i++) {
+                let div: HTMLDivElement = document.createElement("div");
+                document.getElementById("rank").appendChild(div);
+                div.innerHTML = `${i + 1}.Place: ${playerArray[i].name} : ${playerArray[i].score}`;
             }
         }
+    }
+    function sort(a: Player, b: Player): number {
+        return a.score - b.score; 
     }
 }

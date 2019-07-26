@@ -3,11 +3,11 @@ var Endgame;
     document.addEventListener("DOMContentLoaded", init);
     Endgame.imageWidth = 0;
     Endgame.scrollSpeed = 1;
+    Endgame.scorePoints = 0;
     Endgame.playerArray = [];
     Endgame.enemyArray = [];
     Endgame.foodArray = [];
     Endgame.scoreArray = [];
-    Endgame.scorePoints = 0;
     Endgame.animation = 0;
     function init() {
         window.addEventListener("keydown", keyHandleDown);
@@ -175,7 +175,7 @@ var Endgame;
                 Endgame.refresh();
             }
             else
-                (Endgame.nickname = "Anonym", Endgame.insert(), Endgame.refresh());
+                (Endgame.insert(), Endgame.refresh());
         }
         for (let i = 0; i < Endgame.enemyArray.length; i++) {
             Endgame.enemyArray[i].update();
@@ -186,6 +186,7 @@ var Endgame;
         Endgame.playerArray[0].update();
     }
     function startNew() {
+        Endgame.refresh();
         cancelAnimationFrame(Endgame.animation);
         Endgame.crc.clearRect(0, 0, Endgame.canvas.width, Endgame.canvas.height);
         Endgame.scorePoints = 0;

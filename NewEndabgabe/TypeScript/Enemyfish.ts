@@ -6,16 +6,14 @@ namespace Endgame {
        dy: number;
        r: number;
        color: string;
-       sizemodifier: number;
     
     constructor() {
         this.x = 0;
         this.y = 0;
         this.r = 15;
         this.color = "black";
-        this.sizemodifier = 1;
-        this.dx = Math.random() * 10 - 5;
-        this.dy = Math.random() * 10 - 5;
+        this.dx = Math.random() * 10 + 3;
+        this.dy = Math.random() * 10 - 10;
     }
     
     draw(): void {

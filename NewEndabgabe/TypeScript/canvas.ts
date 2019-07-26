@@ -5,12 +5,12 @@ namespace Endgame {
 	export let imageData: ImageData;
 	export let imageWidth: number = 0;
 	export let scrollSpeed: number = 1;
+	export let scorePoints: number = 0;
 	export let nickname: string;
 	export let playerArray: Fish[] = [];
 	export let enemyArray: Enemyfish[] = [];
 	export let foodArray: Food[] = [];
 	export let scoreArray: Score[] = [];
-	export let scorePoints: number = 0;
 	export let animation: number = 0;
 
 	function init(): void {
@@ -19,7 +19,6 @@ namespace Endgame {
 		document.getElementById("restart").addEventListener("click", startNew);
 		canvas = document.getElementsByTagName("canvas")[0];
 		crc = canvas.getContext("2d");
-
 		drawBackground();
 		imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
 		let player: Fish = new Fish("blue", 1);
@@ -172,7 +171,7 @@ namespace Endgame {
 				insert();
 				refresh();
 			}
-			else (nickname = "Anonym", insert(), refresh());
+			else (insert(), refresh());
 		}
 		for (let i: number = 0; i < enemyArray.length; i++) {
 			enemyArray[i].update();
@@ -183,6 +182,7 @@ namespace Endgame {
 		playerArray[0].update();
 	}
 	function startNew(): void {
+		refresh();
 		cancelAnimationFrame(animation);
 		crc.clearRect(0, 0, canvas.width, canvas.height);
 		scorePoints = 0;

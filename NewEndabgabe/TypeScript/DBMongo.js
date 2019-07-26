@@ -22,19 +22,24 @@ var Endgame;
     }
     function handleInsertResponse(_event) {
         let xhr = _event.target;
-        if (xhr.readyState == XMLHttpRequest.DONE) {
-            alert(xhr.response);
-        }
     }
     function handleFindResponse(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let playerArray = JSON.parse(xhr.response);
-            document.getElementById("nickname").innerHTML = " ";
-            for (let i = playerArray.length - 5; i < playerArray.length; i++) {
-                document.getElementById("nickname").innerHTML += `<div>${playerArray[i].name} : ${playerArray[i].score}</div>`;
+            for (let i = 0; i < playerArray.length; i++) {
+                playerArray.sort(sort);
+            }
+            document.getElementById("rank").innerHTML = " ";
+            for (let i = 0; i < 5; i++) {
+                let div = document.createElement("div");
+                document.getElementById("rank").appendChild(div);
+                div.innerHTML = `${i + 1}.Place: ${playerArray[i].name} : ${playerArray[i].score}`;
             }
         }
+    }
+    function sort(a, b) {
+        return a.score - b.score;
     }
 })(Endgame || (Endgame = {}));
 //# sourceMappingURL=DBMongo.js.map
