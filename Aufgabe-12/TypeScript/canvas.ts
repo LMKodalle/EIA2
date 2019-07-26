@@ -5,39 +5,14 @@ namespace Aufgabe11 {
 	let canvas: HTMLCanvasElement;
 	let seaArray: MovingObject[] = [];
 	let fps: number = 30;
-	let imageData: ImageData;
 
 	function init(): void {
 		canvas = document.getElementsByTagName("canvas")[0];
 		crc = canvas.getContext("2d");
-		canvas.addEventListener("click", handleClick);
-		drawBackground();
-		imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
-		canvas = document.getElementsByTagName("canvas")[0];
-		crc = canvas.getContext("2d");
-		drawBackground();
-		imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
-		for (let i: number = 0; i < 5; i++) {
-			let fish: Fish = new Fish();
-			seaArray.push(fish);
-		}
-		for (let i: number = 0; i < 2; i++) {
-			let crab: Crab = new Crab();
-			seaArray.push(crab);
-		}
-		for (let i: number = 0; i < 10; i++) {
-			let bubble: Bubble = new Bubble();
-			seaArray.push(bubble);
-		}
+		let player: Fish = new Fish();
+		seaArray.push(player);
 		update();
 	}
-
-	function handleClick(_event: MouseEvent): void {
-		console.log(_event);
-		let food: Food = new Food(_event.clientX, _event.clientY);
-		seaArray.push(food);
-	}
-
 
 	function drawBackground(): void {
 
@@ -90,8 +65,7 @@ namespace Aufgabe11 {
 	function update(): void {
 		window.setTimeout(update, 1000 / fps);
 		crc.clearRect(0, 0, canvas.width, canvas.height);
-		crc.putImageData(imageData, 0, 0);
-
+		drawBackground();
 		for (let i: number = 0; i < seaArray.length; i++) {
 			seaArray[i].update();
 		}

@@ -1,0 +1,29 @@
+body {
+    background-color: black;
+}
+
+#scoreboard {
+    position: relative;
+    background-color: white;
+    padding: 10px;
+    left: 50%;
+    width: 30%;
+    height: 300px;
+}
+
+#title {
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+button {
+    background-color: #ffffff;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: black;
+    border-color:  #aaaaaaef;
+    font-style: oblique;
+    font-size: 1.3rem;
+    display: block;
+    margin: 2em auto;
+    padding: 10px;
+}

@@ -4,35 +4,12 @@ var Aufgabe11;
     let canvas;
     let seaArray = [];
     let fps = 30;
-    let imageData;
     function init() {
         canvas = document.getElementsByTagName("canvas")[0];
         Aufgabe11.crc = canvas.getContext("2d");
-        canvas.addEventListener("click", handleClick);
-        drawBackground();
-        imageData = Aufgabe11.crc.getImageData(0, 0, canvas.width, canvas.height);
-        canvas = document.getElementsByTagName("canvas")[0];
-        Aufgabe11.crc = canvas.getContext("2d");
-        drawBackground();
-        imageData = Aufgabe11.crc.getImageData(0, 0, canvas.width, canvas.height);
-        for (let i = 0; i < 5; i++) {
-            let fish = new Aufgabe11.Fish();
-            seaArray.push(fish);
-        }
-        for (let i = 0; i < 2; i++) {
-            let crab = new Aufgabe11.Crab();
-            seaArray.push(crab);
-        }
-        for (let i = 0; i < 10; i++) {
-            let bubble = new Aufgabe11.Bubble();
-            seaArray.push(bubble);
-        }
+        let player = new Aufgabe11.Fish();
+        seaArray.push(player);
         update();
-    }
-    function handleClick(_event) {
-        console.log(_event);
-        let food = new Aufgabe11.Food(_event.clientX, _event.clientY);
-        seaArray.push(food);
     }
     function drawBackground() {
         let water = Aufgabe11.crc.createLinearGradient(0, 50, 0, 200);
@@ -79,7 +56,7 @@ var Aufgabe11;
     function update() {
         window.setTimeout(update, 1000 / fps);
         Aufgabe11.crc.clearRect(0, 0, canvas.width, canvas.height);
-        Aufgabe11.crc.putImageData(imageData, 0, 0);
+        drawBackground();
         for (let i = 0; i < seaArray.length; i++) {
             seaArray[i].update();
         }

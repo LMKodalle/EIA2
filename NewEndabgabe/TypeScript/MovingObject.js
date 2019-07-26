@@ -1,17 +1,17 @@
-var Aufgabe11;
-(function (Aufgabe11) {
+var Endgame;
+(function (Endgame) {
     class MovingObject {
         draw() {
             //
         }
         move() {
-            this.x += this.dx;
-            this.y += this.dy;
+            //
         }
         update() {
             this.move();
+            this.draw();
         }
     }
-    Aufgabe11.MovingObject = MovingObject;
-})(Aufgabe11 || (Aufgabe11 = {}));
+    Endgame.MovingObject = MovingObject;
+})(Endgame || (Endgame = {}));
 //# sourceMappingURL=MovingObject.js.map
