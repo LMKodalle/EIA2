@@ -33,9 +33,8 @@ namespace Endgame {
         if (xhr.readyState == XMLHttpRequest.DONE) {
             let playerArray: Player[] = JSON.parse(xhr.response);
             document.getElementById("nickname").innerHTML = " ";
-            document.getElementById("score").innerHTML = " ";
 
-            for (let i: number = 0; i < playerArray.length; i++) {
+            for (let i: number = playerArray.length - 5; i < playerArray.length; i++) {
                 document.getElementById("nickname").innerHTML += `<div>${playerArray[i].name} : ${playerArray[i].score}</div>`;
             }
         }

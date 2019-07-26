@@ -19,7 +19,7 @@ namespace Endgame {
 		document.getElementById("restart").addEventListener("click", startNew);
 		canvas = document.getElementsByTagName("canvas")[0];
 		crc = canvas.getContext("2d");
-		
+
 		drawBackground();
 		imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
 		let player: Fish = new Fish("blue", 1);
@@ -129,8 +129,17 @@ namespace Endgame {
 					cancelAnimationFrame(animation);
 					clearInterval();
 					nickname = prompt("Das geht noch besser! " + "Score: " + scorePoints + " " + "|" + " " + "Los trag dich schnell ein:");
-					insert();
-					refresh();
+					if (nickname == null) {
+						nickname = "SpongebobSchwammkopf";
+						insert();
+						refresh();
+					}
+					if (nickname == " ") {
+						nickname = "NOthIsIsPaTrIcK";
+						insert();
+						refresh();
+					}
+					else (insert(), refresh());
 				}
 				else (enemyArray.splice(i, 1), scorePoints += 5);
 				generateFish();
@@ -153,8 +162,17 @@ namespace Endgame {
 			cancelAnimationFrame(animation);
 			clearInterval();
 			nickname = prompt("Schwache Leistung Rekrut... " + "Score: " + scorePoints + " " + "|" + " " + "Verewige dich als Loser:");
-			insert();
-			refresh();
+			if (nickname == null) {
+				nickname = "SpongebobSchwammkopf";
+				insert();
+				refresh();
+			}
+			if (nickname == " ") {
+				nickname = "NOthIsIsPaTrIcK";
+				insert();
+				refresh();
+			}
+			else (nickname = "Anonym", insert(), refresh());
 		}
 		for (let i: number = 0; i < enemyArray.length; i++) {
 			enemyArray[i].update();

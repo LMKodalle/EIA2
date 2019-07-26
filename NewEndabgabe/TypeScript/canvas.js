@@ -128,8 +128,18 @@ var Endgame;
                     cancelAnimationFrame(Endgame.animation);
                     clearInterval();
                     Endgame.nickname = prompt("Das geht noch besser! " + "Score: " + Endgame.scorePoints + " " + "|" + " " + "Los trag dich schnell ein:");
-                    Endgame.insert();
-                    Endgame.refresh();
+                    if (Endgame.nickname == null) {
+                        Endgame.nickname = "SpongebobSchwammkopf";
+                        Endgame.insert();
+                        Endgame.refresh();
+                    }
+                    if (Endgame.nickname == " ") {
+                        Endgame.nickname = "NOthIsIsPaTrIcK";
+                        Endgame.insert();
+                        Endgame.refresh();
+                    }
+                    else
+                        (Endgame.insert(), Endgame.refresh());
                 }
                 else
                     (Endgame.enemyArray.splice(i, 1), Endgame.scorePoints += 5);
@@ -154,8 +164,18 @@ var Endgame;
             cancelAnimationFrame(Endgame.animation);
             clearInterval();
             Endgame.nickname = prompt("Schwache Leistung Rekrut... " + "Score: " + Endgame.scorePoints + " " + "|" + " " + "Verewige dich als Loser:");
-            Endgame.insert();
-            Endgame.refresh();
+            if (Endgame.nickname == null) {
+                Endgame.nickname = "SpongebobSchwammkopf";
+                Endgame.insert();
+                Endgame.refresh();
+            }
+            if (Endgame.nickname == " ") {
+                Endgame.nickname = "NOthIsIsPaTrIcK";
+                Endgame.insert();
+                Endgame.refresh();
+            }
+            else
+                (Endgame.nickname = "Anonym", Endgame.insert(), Endgame.refresh());
         }
         for (let i = 0; i < Endgame.enemyArray.length; i++) {
             Endgame.enemyArray[i].update();
