@@ -3,6 +3,8 @@ var Endgame;
     class Bubble extends Endgame.MovingObject {
         constructor() {
             super();
+            this.x = Math.random() * Endgame.canvas.width;
+            this.y = 450;
             this.dy = Math.random() * -2 - 1;
         }
         draw() {
@@ -10,10 +12,8 @@ var Endgame;
             bubble.arc(this.x - 3, this.y - 50, 10, 0, 2 * Math.PI);
             Endgame.crc.fillStyle = "white";
             Endgame.crc.fill(bubble);
-            Endgame.crc.stroke(bubble);
             let bubblebubble = new Path2D();
             bubblebubble.arc(this.x, this.y - 53, 2, 0, 2 * Math.PI);
-            Endgame.crc.stroke(bubblebubble);
         }
         update() {
             this.move();
@@ -22,7 +22,7 @@ var Endgame;
         move() {
             this.y += this.dy;
             if (this.y + 20 < 0) {
-                this.y = 400;
+                this.y = 450;
             }
         }
     }

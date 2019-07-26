@@ -23,16 +23,12 @@ var Endgame;
             let enemy = new Endgame.Enemyfish();
             Endgame.enemyArray.push(enemy);
         }
-        for (let i = 0; i < 5; i++) {
-            let bubbles = new Endgame.Bubble();
-            Endgame.foodArray.push(bubbles);
-        }
         let score = new Endgame.Score("20px", "Consolas", "black", 400, 30, "text");
         Endgame.scoreArray.push(score);
         alert("Rekrut, stillgestanden! Du steuerst den blauen Kugelfisch und versuchst den schwarzen feindlichen Kugelfischen auszuweichen. Friss das Futter, welches von oben nach unten sinkt, um für kurze Zeit größer zu sein und dadurch die Feinde zu vernichten!");
         update();
         setInterval(incScore, 500);
-        setInterval(generateFish, 15000);
+        setInterval(generateFish, 8000);
         setInterval(generateFood, 10000);
         Endgame.refresh();
     }
@@ -210,5 +206,6 @@ var Endgame;
         generateFish();
         generateFood();
     }
+    init();
 })(Endgame || (Endgame = {}));
 //# sourceMappingURL=canvas.js.map

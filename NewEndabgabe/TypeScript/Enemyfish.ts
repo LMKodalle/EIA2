@@ -9,11 +9,11 @@ namespace Endgame {
     
     constructor() {
         this.x = 0;
-        this.y = 0;
+        this.y = Math.random() * canvas.height;
         this.r = 15;
         this.color = "black";
-        this.dx = Math.random() * 10 + 3;
-        this.dy = Math.random() * 10 - 10;
+        this.dx = Math.random() * 6 + 2;
+        this.dy = Math.random() * 6 - 5;
     }
     
     draw(): void {
@@ -54,23 +54,23 @@ namespace Endgame {
         this.y += this.dy;
         if (this.x + 100 < 0) {
             this.x = 700;
-            this.dx = Math.random() * 10 - 5;
-            this.dy = Math.random() * 10 - 5;
+            this.dx = Math.random() * 6 + 2;
+            this.dy = Math.random() * 6 - 5;
         }
         if (this.x - 100 > 600) {
             this.x = - 100;
-            this.dx = Math.random() * 10 - 5;
-            this.dy = Math.random() * 10 - 5;
+            this.dx = Math.random() * 6 + 2;
+            this.dy = Math.random() * 6 - 5;
         }
         if (this.y - 100 > 400) {
             this.y = -100;
-            this.dx = Math.random() * 10 - 5;
-            this.dy = Math.random() * 10 - 5;
+            this.dx = Math.random() * 6 + 2;
+            this.dy = Math.random() * 6 - 5;
         }
         if (this.y + 100 < 0) {
             this.y = 500;
-            this.dx = Math.random() * 10 - 5;
-            this.dy = Math.random() * 10 - 5;
+            this.dx = Math.random() * 6 + 2;
+            this.dy = Math.random() * 6 - 5;
         }
     }
     

@@ -27,16 +27,12 @@ namespace Endgame {
 			let enemy: Enemyfish = new Enemyfish();
 			enemyArray.push(enemy);
 		}
-		for (let i: number = 0; i < 5; i++) {
-			let bubbles: Bubble = new Bubble();
-			foodArray.push(bubbles);
-		}
 		let score: Score = new Score("20px", "Consolas", "black", 400, 30, "text");
 		scoreArray.push(score);
 		alert("Rekrut, stillgestanden! Du steuerst den blauen Kugelfisch und versuchst den schwarzen feindlichen Kugelfischen auszuweichen. Friss das Futter, welches von oben nach unten sinkt, um für kurze Zeit größer zu sein und dadurch die Feinde zu vernichten!");
 		update();
 		setInterval(incScore, 500);
-		setInterval(generateFish, 15000);
+		setInterval(generateFish, 8000);
 		setInterval(generateFood, 10000);
 		refresh();
 	}
@@ -206,4 +202,5 @@ namespace Endgame {
 		generateFish();
 		generateFood();
 	}
+	init();
 }
