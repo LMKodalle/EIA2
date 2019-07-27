@@ -143,10 +143,10 @@ namespace Endgame {
 						nickname = prompt("Das geht noch besser! " + "Score: " + scorePoints + " " + "|" + " " + "Los trag dich schnell ein:");
 						insert();
 						refresh();
-					} else (collisionArray.splice(i, 1), scorePoints += 5, collisionArray.push(new Enemyfish()));
+					} else (collisionArray.splice(i, 1), scorePoints += 100, collisionArray.push(new Enemyfish()));
 				}
-				else if (collisionArray[i].type == 3) playerArray[0].dx = 5, playerArray[0].dy = -5, collisionArray.splice(i, 1), scorePoints -= 5;
-				else (collisionArray.splice(i, 1) , playerArray[0].r += 10, scorePoints += 10, c1 = window.setInterval(function (): void { playerArray[0].color = "pink"; }, 150), c2 = window.setInterval(function (): void { playerArray[0].color = "red"; }, 200), window.setTimeout(function (): void { playerArray[0].r -= 10; playerArray[0].color = "blue"; clearInterval(c1); clearInterval(c2); }, 4000));
+				else if (collisionArray[i].type == 3) playerArray[0].dx = 5, playerArray[0].dy = -5, collisionArray.splice(i, 1), scorePoints -= 100;
+				else (collisionArray.splice(i, 1) , playerArray[0].r += 10, scorePoints += 200, c1 = window.setInterval(function (): void { playerArray[0].color = "pink"; }, 150), c2 = window.setInterval(function (): void { playerArray[0].color = "red"; }, 200), window.setTimeout(function (): void { playerArray[0].r -= 10; playerArray[0].color = "blue"; clearInterval(c1); clearInterval(c2); }, 4000));
 			}	
 		}
 		if ((playerArray[0].x + playerArray[0].r) < 0 || (playerArray[0].x + playerArray[0].r) > 600 || (playerArray[0].y + playerArray[0].r) > 400 || (playerArray[0].y + playerArray[0].r) < 0) {
@@ -164,11 +164,11 @@ namespace Endgame {
 		clearTimeout(bubbleTime);
 	}
 	function scoreP(): void {
-		scoreTime = window.setTimeout(scoreP, 500);
+		scoreTime = window.setTimeout(scoreP, 100);
 		scorePoints += 1;
 	}
 	function generateFood(): void {
-		foodTime = window.setTimeout(generateFood, 8000);
+		foodTime = window.setTimeout(generateFood, 7000);
 		collisionArray.push(new Food());
 	}
 	function generateBubbles(): void {

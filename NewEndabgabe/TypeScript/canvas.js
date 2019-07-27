@@ -148,12 +148,12 @@ var Endgame;
                         Endgame.refresh();
                     }
                     else
-                        (Endgame.collisionArray.splice(i, 1), Endgame.scorePoints += 5, Endgame.collisionArray.push(new Endgame.Enemyfish()));
+                        (Endgame.collisionArray.splice(i, 1), Endgame.scorePoints += 100, Endgame.collisionArray.push(new Endgame.Enemyfish()));
                 }
                 else if (Endgame.collisionArray[i].type == 3)
-                    Endgame.playerArray[0].dx = 5, Endgame.playerArray[0].dy = -5, Endgame.collisionArray.splice(i, 1), Endgame.scorePoints -= 5;
+                    Endgame.playerArray[0].dx = 5, Endgame.playerArray[0].dy = -5, Endgame.collisionArray.splice(i, 1), Endgame.scorePoints -= 100;
                 else
-                    (Endgame.collisionArray.splice(i, 1), Endgame.playerArray[0].r += 10, Endgame.scorePoints += 10, c1 = window.setInterval(function () { Endgame.playerArray[0].color = "pink"; }, 150), c2 = window.setInterval(function () { Endgame.playerArray[0].color = "red"; }, 200), window.setTimeout(function () { Endgame.playerArray[0].r -= 10; Endgame.playerArray[0].color = "blue"; clearInterval(c1); clearInterval(c2); }, 4000));
+                    (Endgame.collisionArray.splice(i, 1), Endgame.playerArray[0].r += 10, Endgame.scorePoints += 200, c1 = window.setInterval(function () { Endgame.playerArray[0].color = "pink"; }, 150), c2 = window.setInterval(function () { Endgame.playerArray[0].color = "red"; }, 200), window.setTimeout(function () { Endgame.playerArray[0].r -= 10; Endgame.playerArray[0].color = "blue"; clearInterval(c1); clearInterval(c2); }, 4000));
             }
         }
         if ((Endgame.playerArray[0].x + Endgame.playerArray[0].r) < 0 || (Endgame.playerArray[0].x + Endgame.playerArray[0].r) > 600 || (Endgame.playerArray[0].y + Endgame.playerArray[0].r) > 400 || (Endgame.playerArray[0].y + Endgame.playerArray[0].r) < 0) {
@@ -170,11 +170,11 @@ var Endgame;
         clearTimeout(Endgame.bubbleTime);
     }
     function scoreP() {
-        Endgame.scoreTime = window.setTimeout(scoreP, 500);
+        Endgame.scoreTime = window.setTimeout(scoreP, 100);
         Endgame.scorePoints += 1;
     }
     function generateFood() {
-        Endgame.foodTime = window.setTimeout(generateFood, 8000);
+        Endgame.foodTime = window.setTimeout(generateFood, 7000);
         Endgame.collisionArray.push(new Endgame.Food());
     }
     function generateBubbles() {

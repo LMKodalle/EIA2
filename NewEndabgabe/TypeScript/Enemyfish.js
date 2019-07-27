@@ -4,7 +4,7 @@ var Endgame;
         constructor() {
             super();
             this.type = 1;
-            this.x = -50;
+            this.x = -5;
             this.y = Math.random() * Endgame.canvas.height;
             this.r = 15;
             this.color = "black";
@@ -44,23 +44,23 @@ var Endgame;
             this.y += this.dy;
             if (this.x + 100 < 0) {
                 this.x = 700;
-                this.dx = Math.random() * 6 + 2;
-                this.dy = Math.random() * 6 - 5;
+                this.dx = Math.random() * 5 + 2;
+                this.dy = Math.random() * 4 - 4;
             }
             if (this.x - 100 > 600) {
                 this.x = -100;
-                this.dx = Math.random() * 6 + 2;
-                this.dy = Math.random() * 6 - 5;
+                this.dx = Math.random() * 5 + 2;
+                this.dy = Math.random() * 4 - 4;
             }
             if (this.y - 100 > 400) {
                 this.y = -100;
-                this.dx = Math.random() * 6 + 2;
-                this.dy = Math.random() * 6 - 5;
+                this.dx = Math.random() * 5 + 2;
+                this.dy = Math.random() * 4 - 4;
             }
             if (this.y + 100 < 0) {
                 this.y = 500;
-                this.dx = Math.random() * 6 + 2;
-                this.dy = Math.random() * 6 - 5;
+                this.dx = Math.random() * 5 + 2;
+                this.dy = Math.random() * 4 - 4;
             }
         }
         update() {
