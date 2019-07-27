@@ -1,5 +1,5 @@
 namespace Endgame {
-   export class Enemyfish {
+   export class Enemyfish extends MovingObject {
        x: number;
        y: number;
        dx: number;
@@ -8,12 +8,14 @@ namespace Endgame {
        color: string;
     
     constructor() {
+        super();
+        this.type = 1;
         this.x = 0;
         this.y = Math.random() * canvas.height;
         this.r = 15;
         this.color = "black";
-        this.dx = Math.random() * 6 + 2;
-        this.dy = Math.random() * 6 - 5;
+        this.dx = Math.random() * 3 - 3;
+        this.dy = Math.random() * 3 - 3;
     }
     
     draw(): void {

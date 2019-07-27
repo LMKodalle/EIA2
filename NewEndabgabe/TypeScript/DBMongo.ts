@@ -37,11 +37,12 @@ namespace Endgame {
             for (let i: number = 0; i < 5; i++) {
                 let div: HTMLDivElement = document.createElement("div");
                 document.getElementById("rank").appendChild(div);
+                div.setAttribute("class", "rank");
                 div.innerHTML = `${i + 1}.Place: ${playerArray[i].name} : ${playerArray[i].score}`;
             }
         }
     }
     function sort(a: Player, b: Player): number {
-        return a.score - b.score; 
+        return b.score - a.score; 
     }
 }

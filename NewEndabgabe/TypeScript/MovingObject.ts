@@ -5,9 +5,9 @@ namespace Endgame {
 		dx: number;
         dy: number;
         color: string;
-        sizemodifier: number;
         r: number;
-
+        type: number;
+        
         draw(): void {
             //
         }

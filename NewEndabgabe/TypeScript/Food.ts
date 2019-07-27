@@ -1,13 +1,15 @@
 namespace Endgame {
-    export class Food {
+    export class Food extends MovingObject {
         x: number;
         y: number;
         dy: number;
         r: number;
 
         constructor() {
+            super();
+            this.type = 2;
             this.r = 5;
-            this.x = Math.floor((Math.random() * 500) + 50);
+            this.x = Math.floor((Math.random() * 500) + 100);
             this.y = 0;
             this.dy = Math.floor((Math.random() * 3) + 1);
         }

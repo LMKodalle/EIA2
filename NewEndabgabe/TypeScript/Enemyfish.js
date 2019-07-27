@@ -1,13 +1,15 @@
 var Endgame;
 (function (Endgame) {
-    class Enemyfish {
+    class Enemyfish extends Endgame.MovingObject {
         constructor() {
+            super();
+            this.type = 1;
             this.x = 0;
             this.y = Math.random() * Endgame.canvas.height;
             this.r = 15;
             this.color = "black";
-            this.dx = Math.random() * 6 + 2;
-            this.dy = Math.random() * 6 - 5;
+            this.dx = Math.random() * 3 - 3;
+            this.dy = Math.random() * 3 - 3;
         }
         draw() {
             let upperHead = new Path2D();

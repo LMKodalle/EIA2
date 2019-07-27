@@ -8,10 +8,14 @@ namespace Endgame {
 	export let scorePoints: number = 0;
 	export let nickname: string;
 	export let playerArray: Fish[] = [];
-	export let enemyArray: Enemyfish[] = [];
-	export let foodArray: Food[] = [];
+	export let collisionArray: MovingObject[] = [];
 	export let scoreArray: Score[] = [];
 	export let animation: number = 0;
+	export let scoreTime: number = 0;
+	export let foodTime: number = 0;
+	export let bubbleTime: number = 0;
+	let c1: number;
+	let c2: number;
 
 	function init(): void {
 		window.addEventListener("keydown", keyHandleDown);
@@ -21,34 +25,20 @@ namespace Endgame {
 		crc = canvas.getContext("2d");
 		drawBackground();
 		imageData = crc.getImageData(0, 0, canvas.width, canvas.height);
-		let player: Fish = new Fish("blue", 1);
+		let player: Fish = new Fish("blue");
 		playerArray.push(player);
-		for (let i: number = 0; i < 5; i++) {
+		for (let i: number = 0; i < 6; i++) {
 			let enemy: Enemyfish = new Enemyfish();
-			enemyArray.push(enemy);
+			collisionArray.push(enemy);
 		}
 		let score: Score = new Score("20px", "Consolas", "black", 400, 30, "text");
 		scoreArray.push(score);
-		alert("Rekrut, stillgestanden! Du steuerst den blauen Kugelfisch und versuchst den schwarzen feindlichen Kugelfischen auszuweichen. Friss das Futter, welches von oben nach unten sinkt, um für kurze Zeit größer zu sein und dadurch die Feinde zu vernichten!");
+		alert("Rekrut, stillgestanden! Du steuerst den blauen Kugelfisch und versuchst den schwarzen feindlichen Kugelfischen auszuweichen. Friss das Futter, welches von oben nach unten sinkt, um für kurze Zeit größer zu sein und dadurch die Feinde zu vernichten! Pass bloß auf die Luftblasen auf! Wenn du eine berührst katapultiert sie dich zum Mond, also steuer dagegen. Ach ja, dreh die verdammte Lautstärke hoch oder hebe die automatische Blockade von Musik in deinem Browser auf!");
+		generateFood();
+		generateBubbles();
+		scoreP();
 		update();
-		setInterval(incScore, 500);
-		setInterval(generateFish, 8000);
-		setInterval(generateFood, 10000);
 		refresh();
-	}
-
-	function incScore(): void {
-		scorePoints += 1;
-	}
-
-	function generateFish(): void {
-		let enemy: Enemyfish = new Enemyfish();
-		enemyArray.push(enemy);
-	}
-
-	function generateFood(): void {
-		let food: Food = new Food();
-		foodArray.push(food);
 	}
 
 	function keyHandleDown(_e: KeyboardEvent): void {
@@ -110,97 +100,79 @@ namespace Endgame {
 	}
 
 	function update(): void {
-		animation = window.requestAnimationFrame(update);
+		animation = window.setTimeout(update, 1000 / 60);
 		crc.clearRect(0, 0, canvas.width, canvas.height);
 		crc.putImageData(imageData, imageWidth, 0);
 		crc.putImageData(imageData, imageWidth + canvas.width, 0);
 		imageWidth -= scrollSpeed;
 		if (imageWidth == -canvas.width) imageWidth = 0;
+		collision();
 		scoreArray[0].text = "SCORE: " + scorePoints;
 		scoreArray[0].update();
-		for (let i: number = 1; i < enemyArray.length; i++) {
-			if (playerArray[0].collisionEnemy(enemyArray[i])) {
-				if (playerArray[0].r < enemyArray[i].r) {
-					cancelAnimationFrame(animation);
-					clearInterval();
-					nickname = prompt("Das geht noch besser! " + "Score: " + scorePoints + " " + "|" + " " + "Los trag dich schnell ein:");
-					if (nickname == null) {
-						nickname = "SpongebobSchwammkopf";
-						insert();
-						refresh();
-					}
-					if (nickname == " ") {
-						nickname = "NOthIsIsPaTrIcK";
-						insert();
-						refresh();
-					}
-					else (insert(), refresh());
-				}
-				else (enemyArray.splice(i, 1), scorePoints += 5);
-				generateFish();
-			}
-		}
-		for (let i: number = 1; i < foodArray.length; i++) {
-			if (playerArray[0].collisionFood(foodArray[i])) {
-				foodArray.splice(i, 1);
-				playerArray[0].r += 10;
-				scorePoints += 2;
-				let c1: number = window.setInterval(function (): void { playerArray[0].color = "pink"; }, 150);
-				let c2: number = window.setInterval(function (): void { playerArray[0].color = "red"; }, 200);
-				window.setTimeout(function (): void { playerArray[0].r -= 10; playerArray[0].color = "blue"; clearInterval(c1); clearInterval(c2); }, 4000);
-			}
-		}
-		for (let i: number = 0; i < foodArray.length; i++) {
-			if (foodArray[i].y - 10 > 400) foodArray.splice(i, 1);
-		}
-		if ((playerArray[0].x + playerArray[0].r) < 0 || (playerArray[0].x + playerArray[0].r) > 600 || (playerArray[0].y + playerArray[0].r) > 400 || (playerArray[0].y + playerArray[0].r) < 0) {
-			cancelAnimationFrame(animation);
-			clearInterval();
-			nickname = prompt("Schwache Leistung Rekrut... " + "Score: " + scorePoints + " " + "|" + " " + "Verewige dich als Loser:");
-			if (nickname == null) {
-				nickname = "SpongebobSchwammkopf";
-				insert();
-				refresh();
-			}
-			if (nickname == " ") {
-				nickname = "NOthIsIsPaTrIcK";
-				insert();
-				refresh();
-			}
-			else (insert(), refresh());
-		}
-		for (let i: number = 0; i < enemyArray.length; i++) {
-			enemyArray[i].update();
-		}
-		for (let i: number = 0; i < foodArray.length; i++) {
-			foodArray[i].update();
+		for (let i: number = 0; i < collisionArray.length; i++) {
+			collisionArray[i].update();
 		}
 		playerArray[0].update();
 	}
 	function startNew(): void {
 		refresh();
-		cancelAnimationFrame(animation);
+		deathOfThanos();
 		crc.clearRect(0, 0, canvas.width, canvas.height);
 		scorePoints = 0;
 		playerArray = [];
-		enemyArray = [];
-		foodArray = [];
-		let player: Fish = new Fish("blue", 1);
+		collisionArray = [];
+		let player: Fish = new Fish("blue");
 		playerArray.push(player);
-		for (let i: number = 0; i < 5; i++) {
+		for (let i: number = 0; i < 8; i++) {
 			let enemy: Enemyfish = new Enemyfish();
-			enemyArray.push(enemy);
-		}
-		for (let i: number = 0; i < 5; i++) {
-			let bubbles: Bubble = new Bubble();
-			foodArray.push(bubbles);
+			collisionArray.push(enemy);
 		}
 		let score: Score = new Score("20px", "Consolas", "black", 500, 30, "text");
 		scoreArray.push(score);
-		update();
-		incScore();
-		generateFish();
+		scoreP();
 		generateFood();
+		generateBubbles();
+		update();
 	}
-	init();
+	function collision(): void {
+		for (let i: number = 0; i < collisionArray.length; i++) {
+			if (playerArray[0].collisionEnemy(collisionArray[i])) {
+				if (collisionArray[i].type == 1) {
+					if (playerArray[0].r < collisionArray[i].r) {
+						deathOfThanos();
+						nickname = prompt("Das geht noch besser! " + "Score: " + scorePoints + " " + "|" + " " + "Los trag dich schnell ein:");
+						insert();
+						refresh();
+					} else (collisionArray.splice(i, 1), scorePoints += 5, collisionArray.push(new Enemyfish()));
+				}
+				else if (collisionArray[i].type == 3) playerArray[0].dx = 5, playerArray[0].dy = -5, collisionArray.splice(i, 1);
+				else (collisionArray.splice(i, 1) , playerArray[0].r += 10, scorePoints += 10, c1 = window.setInterval(function (): void { playerArray[0].color = "pink"; }, 150), c2 = window.setInterval(function (): void { playerArray[0].color = "red"; }, 200), window.setTimeout(function (): void { playerArray[0].r -= 10; playerArray[0].color = "blue"; clearInterval(c1); clearInterval(c2); }, 4000));
+			}	
+		}
+		if ((playerArray[0].x + playerArray[0].r) < 0 || (playerArray[0].x + playerArray[0].r) > 600 || (playerArray[0].y + playerArray[0].r) > 400 || (playerArray[0].y + playerArray[0].r) < 0) {
+			deathOfThanos();
+			nickname = prompt("Schwache Leistung Rekrut... " + "Score: " + scorePoints + " " + "|" + " " + "Verewige dich als Loser:");
+			insert();
+			refresh();
+		}
+	}
+	
+	function deathOfThanos(): void {
+		clearTimeout(animation);
+		clearTimeout(scoreTime);
+		clearTimeout(foodTime);
+		clearTimeout(bubbleTime);
+	}
+	function scoreP(): void {
+		scoreTime = window.setTimeout(scoreP, 500);
+		scorePoints += 1;
+	}
+	function generateFood(): void {
+		foodTime = window.setTimeout(generateFood, 8000);
+		collisionArray.push(new Food());
+	}
+	function generateBubbles(): void {
+		bubbleTime = window.setTimeout(generateBubbles, 10000);
+		collisionArray.push(new Bubble());
+	}
 }

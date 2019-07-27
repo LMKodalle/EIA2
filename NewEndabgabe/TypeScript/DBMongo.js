@@ -34,12 +34,13 @@ var Endgame;
             for (let i = 0; i < 5; i++) {
                 let div = document.createElement("div");
                 document.getElementById("rank").appendChild(div);
+                div.setAttribute("class", "rank");
                 div.innerHTML = `${i + 1}.Place: ${playerArray[i].name} : ${playerArray[i].score}`;
             }
         }
     }
     function sort(a, b) {
-        return a.score - b.score;
+        return b.score - a.score;
     }
 })(Endgame || (Endgame = {}));
 //# sourceMappingURL=DBMongo.js.map
