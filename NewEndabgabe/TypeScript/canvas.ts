@@ -33,7 +33,7 @@ namespace Endgame {
 		}
 		let score: Score = new Score("20px", "Consolas", "black", 400, 30, "text");
 		scoreArray.push(score);
-		alert("Rekrut, stillgestanden! Du steuerst den blauen Kugelfisch und versuchst den schwarzen feindlichen Kugelfischen auszuweichen. Friss das Futter, welches von oben nach unten sinkt, um für kurze Zeit größer zu sein und dadurch die Feinde zu vernichten! Pass bloß auf die Luftblasen auf! Wenn du eine berührst katapultiert sie dich zum Mond, also steuer dagegen. Ach ja, dreh die verdammte Lautstärke hoch oder hebe die automatische Blockade von Musik in deinem Browser auf!");
+		alert("Rekrut, stillgestanden! Du steuerst den blauen Kugelfisch und versuchst den schwarzen feindlichen Kugelfischen auszuweichen. Friss das Futter, welches von oben nach unten sinkt, um für 4 Sekunden größer zu sein und dadurch die Feinde zu vernichten! Pass bloß auf die Luftblasen auf! Wenn du eine berührst katapultiert sie dich zum Mond und du verlierst Punkte, also steuer dagegen. Ach ja, dreh die verdammte Lautstärke hoch oder hebe die automatische Blockade von Musik in deinem Browser auf!");
 		generateFood();
 		generateBubbles();
 		scoreP();
@@ -145,7 +145,7 @@ namespace Endgame {
 						refresh();
 					} else (collisionArray.splice(i, 1), scorePoints += 5, collisionArray.push(new Enemyfish()));
 				}
-				else if (collisionArray[i].type == 3) playerArray[0].dx = 5, playerArray[0].dy = -5, collisionArray.splice(i, 1);
+				else if (collisionArray[i].type == 3) playerArray[0].dx = 5, playerArray[0].dy = -5, collisionArray.splice(i, 1), scorePoints -= 5;
 				else (collisionArray.splice(i, 1) , playerArray[0].r += 10, scorePoints += 10, c1 = window.setInterval(function (): void { playerArray[0].color = "pink"; }, 150), c2 = window.setInterval(function (): void { playerArray[0].color = "red"; }, 200), window.setTimeout(function (): void { playerArray[0].r -= 10; playerArray[0].color = "blue"; clearInterval(c1); clearInterval(c2); }, 4000));
 			}	
 		}

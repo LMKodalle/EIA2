@@ -10,7 +10,7 @@ namespace Endgame {
     constructor() {
         super();
         this.type = 1;
-        this.x = 0;
+        this.x = - 50;
         this.y = Math.random() * canvas.height;
         this.r = 15;
         this.color = "black";
