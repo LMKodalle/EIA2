@@ -1,7 +1,6 @@
 namespace Endgame {
 
     export class Fish extends MovingObject {
-        r: number;
 
         constructor(color: string) {
             super();
